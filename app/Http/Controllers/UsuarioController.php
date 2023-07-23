@@ -48,6 +48,6 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($idUsuario);
         $usuario -> delete();
 
-        return ["msg" => "El Producto ha sido eliminado correctamente!"];
+        return ["msg" => "El Usuario ha sido eliminado correctamente!"];
     }
 }
