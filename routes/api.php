@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RutaController;
+use App\Http\Controllers\CamionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,9 @@ Route::get("/rutas", [RutaController::class, "Listar"]);
 Route::get("/rutas/{id}", [RutaController::class, "ListarUno"]);
 Route::put("/rutas/{id}", [RutaController::class, "Modificar"]);
 Route::delete("/rutas/{id}", [RutaController::class, "Eliminar"]);
+
+Route::post("/camiones", [CamionController::class, "Crear"]);
+Route::get("/camiones", [CamionController::class, "Listar"]);
+Route::get("/camiones/{id}", [CamionController::class, "ListarUno"]);
+Route::put("/camiones/{id}", [CamionController::class, "Modificar"]);
+Route::delete("/camiones/{id}", [CamionController::class, "Eliminar"]);

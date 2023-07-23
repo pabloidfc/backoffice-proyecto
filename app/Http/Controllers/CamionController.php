@@ -20,7 +20,7 @@ class CamionController extends Controller
         $camion -> peso        = $req -> post("peso");
         $camion -> estado      = $req -> post("estado");
         $camion -> matricula   = $req -> post("matricula");
-        $camion -> limite_peso = $req -> post("limite_peso");
+        $camion -> peso_limite = $req -> post("peso_limite");
         $camion -> save();
 
         return $camion;
@@ -32,7 +32,7 @@ class CamionController extends Controller
         if($req -> input("peso"))        $camion -> peso        = $req -> post("peso");
         if($req -> input("estado"))      $camion -> estado      = $req -> post("estado");
         if($req -> input("matricula"))   $camion -> matricula   = $req -> post("matricula");
-        if($req -> input("limite_peso")) $camion -> limite_peso = $req -> post("limite_peso");
+        if($req -> input("peso_limite")) $camion -> peso_limite = $req -> post("peso_limite");
         
         $camion -> save();
         return $camion;
