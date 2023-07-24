@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\CamionController;
+use App\Http\Controllers\AlmacenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,9 @@ Route::get("/camiones", [CamionController::class, "Listar"]);
 Route::get("/camiones/{id}", [CamionController::class, "ListarUno"]);
 Route::put("/camiones/{id}", [CamionController::class, "Modificar"]);
 Route::delete("/camiones/{id}", [CamionController::class, "Eliminar"]);
+
+Route::post("/almacenes", [AlmacenController::class, "Crear"]);
+Route::get("/almacenes", [AlmacenController::class, "Listar"]);
+Route::get("/almacenes/{id}", [AlmacenController::class, "ListarUno"]);
+Route::put("/almacenes/{id}", [AlmacenController::class, "Modificar"]);
+Route::delete("/almacenes/{id}", [AlmacenController::class, "Eliminar"]);
