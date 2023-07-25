@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RutaController;
+use App\Http\Controllers\CamionController;
+use App\Http\Controllers\AlmacenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +21,27 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post("/usuarios", [UsuarioController::class, "Crear"]);
+Route::get("/usuarios", [UsuarioController::class, "Listar"]);
+Route::get("/usuarios/{id}", [UsuarioController::class, "ListarUno"]);
+Route::put("/usuarios/{id}", [UsuarioController::class, "Modificar"]);
+Route::delete("/usuarios/{id}", [UsuarioController::class, "Eliminar"]);
+
+Route::post("/rutas", [RutaController::class, "Crear"]);
+Route::get("/rutas", [RutaController::class, "Listar"]);
+Route::get("/rutas/{id}", [RutaController::class, "ListarUno"]);
+Route::put("/rutas/{id}", [RutaController::class, "Modificar"]);
+Route::delete("/rutas/{id}", [RutaController::class, "Eliminar"]);
+
+Route::post("/camiones", [CamionController::class, "Crear"]);
+Route::get("/camiones", [CamionController::class, "Listar"]);
+Route::get("/camiones/{id}", [CamionController::class, "ListarUno"]);
+Route::put("/camiones/{id}", [CamionController::class, "Modificar"]);
+Route::delete("/camiones/{id}", [CamionController::class, "Eliminar"]);
+
+Route::post("/almacenes", [AlmacenController::class, "Crear"]);
+Route::get("/almacenes", [AlmacenController::class, "Listar"]);
+Route::get("/almacenes/{id}", [AlmacenController::class, "ListarUno"]);
+Route::put("/almacenes/{id}", [AlmacenController::class, "Modificar"]);
+Route::delete("/almacenes/{id}", [AlmacenController::class, "Eliminar"]);
