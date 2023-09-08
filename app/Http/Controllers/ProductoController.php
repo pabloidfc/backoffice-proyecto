@@ -10,12 +10,12 @@ class ProductoController extends Controller
     public function Listar() {
         $productos = Producto::all();
 
-        return view("productos", ["productos" => $productos]);
+        return view("producto/productos", ["productos" => $productos]);
     }
 
     public function ListarUno(Request $req, $productoId) {
         $producto = Producto::find($productoId);
 
-        return view("productoInfo", ["producto" => $producto]);
+        return view("producto/productoInfo", ["producto" => $producto]);
     }
 }

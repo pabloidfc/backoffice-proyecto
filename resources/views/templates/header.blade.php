@@ -13,7 +13,7 @@
             <a href="">Usuarios</a>
             <a href="">Camiones</a>
             <a href="{{ route("productos") }}">Productos</a>
-            <a href="">Lotes</a>
+            <a href="{{ route("lotes") }}">Lotes</a>
         </div>
     </header>
     <hr>

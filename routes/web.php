@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\LoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,11 @@ Route::get('/', function () {
 Route::controller(ProductoController::class) -> group(function () {
     Route::get("/productos", "Listar") -> name("productos");
     Route::get("/productos/{id}", "ListarUno") -> name("productoInfo");
+});
+
+Route::controller(LoteController::class) -> group(function () {
+    Route::get("/lotes", "Listar") -> name("lotes");
+    Route::get("/lotes/{id}", "ListarUno") -> name("loteInfo");
 });
 
 // Route::post("/usuarios", [UsuarioController::class, "Crear"]);
