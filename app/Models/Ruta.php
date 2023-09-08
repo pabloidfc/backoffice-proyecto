@@ -11,5 +11,5 @@ class Ruta extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = "rutas";
+    protected $table = "ruta";
 }
