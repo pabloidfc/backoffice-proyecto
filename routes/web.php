@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+}) -> name("home");
 
-Route::get("/productos", function () {
-    return view("productos", ["productos"]);
+Route::controller(ProductoController::class) -> group(function () {
+    Route::get("/productos", "Listar") -> name("productos");
 });
 
 // Route::post("/usuarios", [UsuarioController::class, "Crear"]);

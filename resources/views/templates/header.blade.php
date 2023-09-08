@@ -9,10 +9,10 @@
 <body>
     <header>
         <div>
-            <a href="">Home</a>
+            <a href="{{ route("home") }}">Home</a>
             <a href="">Usuarios</a>
             <a href="">Camiones</a>
-            <a href="">Productos</a>
+            <a href="{{ route("productos") }}">Productos</a>
             <a href="">Lotes</a>
         </div>
     </header>
