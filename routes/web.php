@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::controller(ProductoController::class) -> group(function () {
     Route::get("/productos", "Listar") -> name("productos");
+    Route::get("/productos/{id}", "ListarUno") -> name("productoInfo");
 });
 
 // Route::post("/usuarios", [UsuarioController::class, "Crear"]);
