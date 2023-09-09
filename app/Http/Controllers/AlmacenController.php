@@ -8,11 +8,14 @@ use App\Models\Almacen;
 class AlmacenController extends Controller
 {
     public function Listar(Request $req) {
-        return Almacen::all();
+        $almacenes = Almacen::all();
+        return view("almacen/almacenes", ["almacenenes" => $almacenes]);
     }
 
     public function ListarUno(Request $req, $idAlmacen) {
-        return Almacen::find($idAlmacen);
+        $almacen = Almacen::find($idAlmacen);
+        $almacen -> Ubicacion;
+        return view("almacen/almacenInfo", ["almacen" => $almacen]);
     }
 
     public function Crear(Request $req) {
