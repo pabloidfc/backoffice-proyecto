@@ -20,6 +20,8 @@
     </header>
     <hr>
 
+    <main>
     @yield('content')
+    </main>
 </body>
 </html>

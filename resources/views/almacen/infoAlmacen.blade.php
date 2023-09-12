@@ -1,4 +1,4 @@
-@extends("templates/header")
+@extends("templates/layout")
 
 @section("content")
     <h1>Información del Almacen N°<span>{{ $almacen["id"] }}</span></h1>

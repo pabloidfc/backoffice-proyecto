@@ -1,9 +1,9 @@
-@extends("templates/header")
+@extends("templates/layout")
 
 @section("content")
-    <div>
-        @foreach ($productos as $producto)
-            <a href="{{ route("infoProducto", $producto["id"]) }}"> <strong>Producto N°{{ $producto["id"] }}</strong> </a>
-        @endforeach
-    </div>   
+<div style="display: flex;flex-direction: column">
+    @foreach ($productos as $producto)
+        <a href="{{ route("infoProducto", $producto["id"]) }}"> <strong>Producto N°{{ $producto["id"] }}</strong> </a>
+    @endforeach
+</div>   
 @endsection

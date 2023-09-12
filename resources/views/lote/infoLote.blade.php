@@ -1,4 +1,4 @@
-@extends("templates/header")
+@extends("templates/layout")
 
 @section("content")
     <h1>Información del Lote N°<span>{{ $lote["id"] }}</span></h1>
