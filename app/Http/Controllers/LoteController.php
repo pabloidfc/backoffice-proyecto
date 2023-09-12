@@ -16,6 +16,6 @@ class LoteController extends Controller
     public function ListarUno(Request $req, $loteId) {
         $lote = Lote::find($loteId);
 
-        return view("lote/loteInfo", ["lote" => $lote]);
+        return view("lote/infoLote", ["lote" => $lote]);
     }
 }

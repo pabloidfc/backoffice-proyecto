@@ -3,7 +3,7 @@
 @section("content")
     <div>
         @foreach ($lotes as $lote)
-            <a href="{{ route("loteInfo", $lote["id"]) }}"> <strong>Lote N°{{ $lote["id"] }}</strong> </a>
+            <a href="{{ route("infoLote", $lote["id"]) }}"> <strong>Lote N°{{ $lote["id"] }}</strong> </a>
         @endforeach
     </div>   
 @endsection

@@ -16,6 +16,6 @@ class ProductoController extends Controller
     public function ListarUno(Request $req, $productoId) {
         $producto = Producto::find($productoId);
 
-        return view("producto/productoInfo", ["producto" => $producto]);
+        return view("producto/infoProducto", ["producto" => $producto]);
     }
 }

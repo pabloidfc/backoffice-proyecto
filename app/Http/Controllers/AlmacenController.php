@@ -9,13 +9,13 @@ class AlmacenController extends Controller
 {
     public function Listar(Request $req) {
         $almacenes = Almacen::all();
-        return view("almacen/almacenes", ["almacenenes" => $almacenes]);
+        return view("almacen/almacenes", ["almacenes" => $almacenes]);
     }
 
     public function ListarUno(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
         $almacen -> Ubicacion;
-        return view("almacen/almacenInfo", ["almacen" => $almacen]);
+        return view("almacen/infoAlmacen", ["almacen" => $almacen]);
     }
 
     public function Crear(Request $req) {
