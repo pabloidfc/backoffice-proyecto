@@ -14,7 +14,7 @@
             <a href="{{ route("almacenes") }}">Almacenes</a>
             <a href="{{ route("productos") }}">Productos</a>
             <a href="{{ route("lotes") }}">Lotes</a>
-            <a href="">Camiones</a>
+            <a href="">Vehículos</a>
             <a href="">Rutas</a>
         </div>
     </header>
