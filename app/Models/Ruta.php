@@ -12,4 +12,8 @@ class Ruta extends Model
     use SoftDeletes;
 
     protected $table = "ruta";
+
+    public function Viaje() {
+        return $this -> hasMany(Viaje::class);
+    }
 }
