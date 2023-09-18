@@ -7,15 +7,15 @@ use App\Models\Producto;
 
 class ProductoController extends Controller
 {
-    public function Listar() {
+    public function index() {
         $productos = Producto::all();
 
-        return view("producto/productos", ["productos" => $productos]);
+        return view("producto.index", ["productos" => $productos]);
     }
 
-    public function ListarUno(Request $req, $productoId) {
+    public function show(Request $req, $productoId) {
         $producto = Producto::find($productoId);
 
-        return view("producto/infoProducto", ["producto" => $producto]);
+        return view("producto.show", ["producto" => $producto]);
     }
 }

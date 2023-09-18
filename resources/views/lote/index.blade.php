@@ -1,4 +1,6 @@
-@extends("templates/layout")
+@extends("layouts.app")
+
+@section("title", "Lotes")
 
 @section("content")
 <div style="display: flex;flex-direction: column">

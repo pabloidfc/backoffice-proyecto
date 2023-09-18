@@ -1,4 +1,6 @@
-@extends("templates/layout")
+@extends("layouts.app")
+
+@section("title", "Productos")
 
 @section("content")
     <h1>Información del Producto N°<span>{{ $producto["id"] }}</span></h1>

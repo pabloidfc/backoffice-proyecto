@@ -21,18 +21,18 @@ Route::get('/', function () {
 }) -> name("home");
 
 Route::controller(ProductoController::class) -> group(function () {
-    Route::get("/productos", "Listar") -> name("productos");
-    Route::get("/productos/{id}", "ListarUno") -> name("infoProducto");
+    Route::get("/producto", "index") -> name("producto");
+    Route::get("/producto/{id}", "show") -> name("producto.show");
 });
 
 Route::controller(LoteController::class) -> group(function () {
-    Route::get("/lotes", "Listar") -> name("lotes");
-    Route::get("/lotes/{id}", "ListarUno") -> name("infoLote");
+    Route::get("/lote", "index") -> name("lote");
+    Route::get("/lote/{id}", "show") -> name("lote.show");
 });
 
 Route::controller(AlmacenController::class) -> group(function () {
-    Route::get("/almacenes", "Listar") -> name("almacenes");
-    Route::get("/almacenes/{id}", "ListarUno") -> name("infoAlmacen");
+    Route::get("/almacen", "index") -> name("almacen");
+    Route::get("/almacen/{id}", "show") -> name("almacen.show");
 });
 
 // Route::post("/usuarios", [UsuarioController::class, "Crear"]);

@@ -7,15 +7,15 @@ use App\Models\Lote;
 
 class LoteController extends Controller
 {
-    public function Listar() {
+    public function index() {
         $lotes = Lote::all();
 
-        return view("lote/lotes", ["lotes" => $lotes]);
+        return view("lote.index", ["lotes" => $lotes]);
     }
 
-    public function ListarUno(Request $req, $loteId) {
+    public function show(Request $req, $loteId) {
         $lote = Lote::find($loteId);
 
-        return view("lote/infoLote", ["lote" => $lote]);
+        return view("lote.show", ["lote" => $lote]);
     }
 }

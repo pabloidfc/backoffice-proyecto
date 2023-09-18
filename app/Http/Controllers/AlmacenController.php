@@ -7,18 +7,22 @@ use App\Models\Almacen;
 
 class AlmacenController extends Controller
 {
-    public function Listar(Request $req) {
+    public function index(Request $req) {
         $almacenes = Almacen::all();
-        return view("almacen/almacenes", ["almacenes" => $almacenes]);
+        return view("almacen.index", ["almacenes" => $almacenes]);
     }
 
-    public function ListarUno(Request $req, $idAlmacen) {
+    public function show(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
         $almacen -> Ubicacion;
-        return view("almacen/infoAlmacen", ["almacen" => $almacen]);
+        return view("almacen.show", ["almacen" => $almacen]);
     }
 
-    public function Crear(Request $req) {
+    public function create(Request $req) {
+        return view("almacen.create");
+    }
+
+    public function store(Request $req) {
         $almacen = new Almacen;
         $almacen -> tipo        = $req -> post("tipo");
         $almacen -> nombre      = $req -> post("nombre");
@@ -29,7 +33,7 @@ class AlmacenController extends Controller
         return $almacen;
     }
 
-    public function Modificar(Request $req, $idAlmacen) {
+    public function update(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
 
         if($req -> input("tipo"))        $almacen -> tipo        = $req -> post("tipo");
@@ -41,7 +45,7 @@ class AlmacenController extends Controller
         return $almacen;
     }
 
-    public function Eliminar(Request $req, $idAlmacen) {
+    public function destroy(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
         $almacen -> delete();
 
