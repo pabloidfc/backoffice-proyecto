@@ -12,4 +12,8 @@ class Vehiculo extends Model
     use SoftDeletes;
 
     protected $table = "vehiculo";
+
+    public function Transporta() {
+        return $this -> hasMany(VehiculoTransporta::class);
+    }
 }
