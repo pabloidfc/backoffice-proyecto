@@ -51,6 +51,11 @@ class AlmacenController extends Controller
         return redirect() -> route("almacen.index");
     }
 
+    public function edit(Request $req, $idAlmacen) {
+        $almacen = Almacen::findOrFail($idAlmacen);
+        return view("almacen.edit", $almacen);
+    }
+
     public function update(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
 
@@ -65,8 +70,11 @@ class AlmacenController extends Controller
 
     public function destroy(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
+        $ubicacion = $almacen -> Ubicacion;
+
+        $ubicacion -> delete();
         $almacen -> delete();
 
-        return ["msg" => "La Almacen ha sido eliminada correctamente!"];
+        return redirect() -> route("almacen.index");
     }
 }

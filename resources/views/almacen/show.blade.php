@@ -40,4 +40,24 @@
     <button>
         <a href="{{ route("almacen.index") }}">Volver</a>
     </button>
+
+    <form 
+        action="{{ route('almacen.update', $almacen["id"]) }}"
+        method="POST"
+        style="display: inline"
+    >
+        @csrf
+        @method("PUT")
+        <button type="submit">Modificar</button>
+    </form>
+
+    <form 
+        action="{{ route('almacen.destroy', $almacen["id"]) }}"
+        method="POST"
+        style="display: inline"
+    >
+        @csrf
+        @method("DELETE")
+        <button type="submit">Eliminar</button>
+    </form>
 @endsection

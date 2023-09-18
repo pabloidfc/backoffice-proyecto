@@ -7,7 +7,7 @@
     <a href="{{ route("almacen.create") }}">Crear nuevo almacen</a>
 </h3>
 
-<div style="display: flex;flex-direction: column">
+<div style="display: inline-flex;flex-direction: column">
     @foreach ($almacenes as $almacen)
         <a href="{{ route("almacen.show", $almacen["id"]) }}">
                 <strong>
