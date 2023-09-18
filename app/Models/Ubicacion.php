@@ -14,4 +14,8 @@ class Ubicacion extends Model
     public function Almacen() {
         return $this -> belongsTo(Almacen::class);
     }
+
+    public function Usuario() {
+        return $this -> belongsTo(User::class);
+    }
 }
