@@ -24,30 +24,42 @@
     <fieldset>
         <legend>Selecciona un tipo*</legend>
         <div>
-            <input type="radio" name="tipo" value="Propio" >
+            <input type="radio" name="tipo" value="Propio">
             <label for="propio">Propio</label>
             <input type="radio" name="tipo" value="De terceros">
             <label for="de-terceros">De terceros</label>
             @error('tipo')
                 <br>
                 <small style="color: red">{{ $message }}</small>   
-             @enderror
+            @enderror
         </div>
     </fieldset>
 
     <label>
         Departamento* <br>
-        <input name="departamento" type="text" >
+        <input name="departamento" type="text" value="{{old("departamento")}}">
+        @error('departamento')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+        @enderror
     </label>
     <br>
     <label>
         Calle* <br>
-        <input name="calle" type="text" >
+        <input name="calle" type="text" value="{{old("calle")}}">
+        @error('calle')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+        @enderror
     </label>
     <br>
     <label>
         N de puerta* <br>
-        <input name="nro_de_puerta" type="number" >
+        <input name="nro_de_puerta" type="number" value="{{old("nro_de_puerta")}}">
+        @error('nro_de_puerta')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+        @enderror
     </label>
     <br>
     <label>

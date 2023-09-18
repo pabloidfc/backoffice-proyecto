@@ -26,7 +26,12 @@ class AlmacenController extends Controller
     public function store(Request $req) {
         $req -> validate([
             "nombre" => "required|string|min:2",
-            "tipo" => "required|in:Propio,De terceros"
+            "tipo" => "required|in:Propio,De terceros",
+            "departamento" => "required|string|min:2",
+            "calle" => "required|string|min:2",
+            "esquina" => "nullable|string|min:2",
+            "nro_de_puerta" => "required|integer",
+            "coordenada" => "nullable|string|min:2"
         ]);
 
 
