@@ -18,4 +18,7 @@
             </li> --}}
         </ul>
     </div>   
+    <button>
+        <a href="{{ route("almacen.index") }}">Volver</a>
+    </button>
 @endsection

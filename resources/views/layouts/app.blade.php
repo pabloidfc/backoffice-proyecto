@@ -11,9 +11,9 @@
         <div>
             <a href="{{ route("home") }}">Home</a>
             <a href="">Usuarios</a>
-            <a href="{{ route("almacen") }}">Almacenes</a>
-            <a href="{{ route("producto") }}">Productos</a>
-            <a href="{{ route("lote") }}">Lotes</a>
+            <a href="{{ route("almacen.index") }}">Almacenes</a>
+            <a href="{{ route("producto.index") }}">Productos</a>
+            <a href="{{ route("lote.index") }}">Lotes</a>
             <a href="">Vehículos</a>
             <a href="">Rutas</a>
         </div>

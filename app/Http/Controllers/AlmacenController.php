@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Almacen;
+use App\Models\Ubicacion;
 
 class AlmacenController extends Controller
 {
@@ -13,7 +14,7 @@ class AlmacenController extends Controller
     }
 
     public function show(Request $req, $idAlmacen) {
-        $almacen = Almacen::find($idAlmacen);
+        $almacen = Almacen::findOrFail($idAlmacen);
         $almacen -> Ubicacion;
         return view("almacen.show", ["almacen" => $almacen]);
     }
@@ -23,14 +24,18 @@ class AlmacenController extends Controller
     }
 
     public function store(Request $req) {
+        $req -> validate([
+            "nombre" => "required|string|min:2",
+            "tipo" => "required|in:Propio,De terceros"
+        ]);
+
+
         $almacen = new Almacen;
-        $almacen -> tipo        = $req -> post("tipo");
-        $almacen -> nombre      = $req -> post("nombre");
-        $almacen -> direccion   = $req -> post("direccion");
-        $almacen -> coordenadas = $req -> post("coordenadas");
+        $almacen -> nombre = $req -> input("nombre");
+        $almacen -> tipo   = $req -> input("tipo");
         $almacen -> save();
 
-        return $almacen;
+        return redirect() -> route("almacen.index");
     }
 
     public function update(Request $req, $idAlmacen) {
