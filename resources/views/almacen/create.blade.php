@@ -37,27 +37,27 @@
 
     <label>
         Departamento* <br>
-        <input id="departamento" type="text" >
+        <input name="departamento" type="text" >
     </label>
     <br>
     <label>
         Calle* <br>
-        <input id="calle" type="text" >
+        <input name="calle" type="text" >
     </label>
     <br>
     <label>
         N de puerta* <br>
-        <input id="nro_de_puerta" type="number" >
+        <input name="nro_de_puerta" type="number" >
     </label>
     <br>
     <label>
         Esquina <br>
-        <input id="esquina" type="text" >
+        <input name="esquina" type="text" >
     </label>
     <br>
     <label>
         Coordenada <br>
-        <input id="coordenada" type="text" >
+        <input name="coordenada" type="text" >
     </label>
     <br>
     <button type="submit">Enviar</button>

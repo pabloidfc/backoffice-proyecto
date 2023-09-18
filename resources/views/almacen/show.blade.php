@@ -8,14 +8,33 @@
         <ul>
             <li><strong>Nombre: </strong> {{ $almacen["nombre"] }}</li>
             <li><strong>Tipo: </strong> {{ $almacen["tipo"] }}</li>
-            {{-- <li>
+            <li>
                 <strong>Ubicacion: </strong>
                 <ul>
-                    <li> {{ $almacen["ubicacion"]["departamento"] }}</li>
-                    <li> {{ $almacen["ubicacion"]["calle"] }}</li>
-                    <li> {{ $almacen["ubicacion"]["nro_de_puerta"] }}</li>
+                    <li> <strong>Departamento: </strong> 
+                        {{ $almacen["ubicacion"]["departamento"] }}
+                    </li>
+                    <li> <strong>Calle: </strong>
+                        {{ $almacen["ubicacion"]["calle"] }}
+                    </li>
+
+                    @isset($almacen["ubicacion"]["esquina"])
+                        <li> <strong>Esquina: </strong>
+                            {{ $almacen["ubicacion"]["esquina"] }}
+                        </li>
+                    @endisset
+
+                    <li> <strong>N° de puerta: </strong> 
+                        {{ $almacen["ubicacion"]["nro_de_puerta"] }}
+                    </li>
+
+                    @isset($almacen["ubicacion"]["coordenada"])
+                    <li> <strong>Coordenada: </strong>
+                        {{ $almacen["ubicacion"]["coordenada"] }}
+                    </li>
+                @endisset
                 </ul>
-            </li> --}}
+            </li>
         </ul>
     </div>   
     <button>

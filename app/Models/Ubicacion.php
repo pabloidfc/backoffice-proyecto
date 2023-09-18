@@ -12,6 +12,13 @@ class Ubicacion extends Model
     use SoftDeletes;
 
     protected $table = "ubicacion";
+    protected $fillable = [
+        "departamento",
+        "calle",
+        "nro_de_puerta",
+        "esquina",
+        "coordenada"
+    ];
 
     public function Almacen() {
         return $this -> belongsTo(Almacen::class);

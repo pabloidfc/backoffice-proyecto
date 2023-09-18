@@ -35,6 +35,14 @@ class AlmacenController extends Controller
         $almacen -> tipo   = $req -> input("tipo");
         $almacen -> save();
 
+        $almacen -> Ubicacion() -> create([
+            "departamento"  => $req -> input("departamento"),
+            "calle"         => $req -> input("calle"),
+            "esquina"       => $req -> input("esquina"),
+            "nro_de_puerta" => $req -> input("nro_de_puerta"),
+            "coordenada"    => $req -> input("coordenada")
+        ]);
+
         return redirect() -> route("almacen.index");
     }
 
