@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Vehiculo extends Model
+class Viaje extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = "vehiculo";
+    protected $table = "viaje";
 
-    public function Transporta() {
-        return $this -> hasMany(VehiculoTransporta::class);
+    public function Ruta() {
+        return $this -> belongsTo(Ruta::class);
     }
 
     public function ViajeAsignado() {
-        return $this -> belongsToMany(ViajeAsignado::class, "vehiculo_id", "viaje_id");
+        return $this -> hasMany(ViajeAsignado::class);
     }
 }

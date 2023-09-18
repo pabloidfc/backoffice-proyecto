@@ -24,4 +24,12 @@ class Lote extends Model
     public function Transporta() {
         return $this -> hasMany(VehiculoTransporta::class);
     }
+
+    public function ViajeAsignado() {
+        return $this -> belongsToMany(ViajeAsignado::class, "lote_id", "viaje_id");
+    }
+
+    public function Creador() {
+        return $this -> belongsTo(User::class);
+    }
 }
