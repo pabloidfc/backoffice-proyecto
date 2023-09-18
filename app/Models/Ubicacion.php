@@ -18,4 +18,8 @@ class Ubicacion extends Model
     public function Usuario() {
         return $this -> belongsTo(User::class);
     }
+
+    public function Cliente() {
+        return $this -> belongsTo(User::class);
+    }
 }

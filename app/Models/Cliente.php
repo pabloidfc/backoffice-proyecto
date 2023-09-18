@@ -12,4 +12,8 @@ class Cliente extends Model
     use SoftDeletes;
 
     protected $table = "cliente";
+
+    public function Ubicacion() {
+        return $this -> hasOne(Ubicacion::class);
+    }
 }
