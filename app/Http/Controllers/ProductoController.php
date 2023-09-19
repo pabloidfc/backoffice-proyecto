@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use App\Models\Almacen;
+use Illuminate\Validation\Rule;
 use GuzzleHttp\Handler\Proxy;
 
 class ProductoController extends Controller
@@ -20,12 +22,14 @@ class ProductoController extends Controller
 
     public function store(Request $req) {
         $req -> validate([
-            "almacen_id"        => "required|integer",
+            "almacen_id"        => ["required", "integer", Rule::exists('almacen', 'id')],
             "estado"            => "nullable|in:En espera, Almacenado, Loteado, Desloteado, En viaje, Entregado",
             "peso"              => "required|numeric",
             "departamento"      => "required|alpha|min:4",
             "direccion_entrega" => "required|string",
             "fecha_entrega"     => "required|date"
+        ], [
+            'almacen_id.exists' => 'The provided id does not match with any Almacen',
         ]);
 
         $producto = new Producto();
@@ -37,6 +41,7 @@ class ProductoController extends Controller
         if($req -> has("estado")) 
             $producto -> estado = $req -> input("estado");
 
+        
         $producto -> Almacen() -> associate($req -> almacen_id);
 
         $producto -> save();
