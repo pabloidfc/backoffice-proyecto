@@ -25,6 +25,7 @@ Route::controller(ProductoController::class) -> group(function () {
     Route::get("/producto/crear", "create") -> name("producto.create");
     Route::get("/producto/{id}", "show") -> name("producto.show");
     Route::get("/producto/{id}/editar", "edit") -> name("producto.edit");
+    Route::put("/producto/{id}", "update") -> name("producto.update");
     Route::delete("/producto/{id}", "destroy") -> name("producto.destroy");
     Route::post("producto/", "store") -> name("producto.store");
 });
