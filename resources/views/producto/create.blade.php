@@ -59,7 +59,7 @@
     </label>
     <br>
     <label>
-        Departamento* <br>
+        Departamento destino* <br>
         <input name="departamento" type="text" value="{{old("departamento")}}">
         @error('departamento')
             <br>

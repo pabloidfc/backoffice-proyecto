@@ -18,13 +18,13 @@ class ProductoController extends Controller
         return view("producto.create");
     }
 
-    public function store(Request $req) { // ! Error integridad de BSDD
+    public function store(Request $req) {
         $req -> validate([
             "almacen_id"        => "required|integer",
             "estado"            => "nullable|in:En espera, Almacenado, Loteado, Desloteado, En viaje, Entregado",
             "peso"              => "required|numeric",
-            "departamento"      => "required|string|min:4",
-            "direccion_entrega" => "required",
+            "departamento"      => "required|alpha|min:4",
+            "direccion_entrega" => "required|string",
             "fecha_entrega"     => "required|date"
         ]);
 
