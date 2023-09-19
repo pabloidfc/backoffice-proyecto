@@ -24,27 +24,51 @@
         <legend>Selecciona un estado</legend>
         <div>
             <label>
-                <input type="radio" name="estado" value="En espera">
+                <input 
+                    type="radio" 
+                    name="estado" 
+                    value="En espera" {{ old('estado') == 'En espera' ? 'checked' : '' }}
+                >
                 En espera 
             </label>
             <label>
-                <input type="radio" name="estado" value="Almacenado">
+                <input 
+                    type="radio" 
+                    name="estado" 
+                    value="Almacenado" {{ old('estado') == 'Almacenado' ? 'checked' : '' }}
+                >
                 Almacenado 
             </label>
             <label>
-                <input type="radio" name="estado" value="Loteado">
+                <input 
+                    type="radio" 
+                    name="estado" 
+                    value="Loteado" {{ old('estado') == 'Loteado' ? 'checked' : '' }}
+                >
                 Loteado 
             </label>
             <label>
-                <input type="radio" name="estado" value="Desloteado">
+                <input 
+                    type="radio" 
+                    name="estado" 
+                    value="Desloteado" {{ old('estado') == 'Desloteado' ? 'checked' : '' }}
+                >
                 Desloteado 
             </label>
             <label>
-                <input type="radio" name="estado" value="En viaje">
+                <input 
+                    type="radio" 
+                    name="estado" 
+                    value="En viaje" {{ old('estado') == 'En viaje' ? 'checked' : '' }}
+                >
                 En viaje 
             </label>
             <label>
-                <input type="radio" name="estado" value="Entregado">
+                <input 
+                    type="radio" 
+                    name="estado" 
+                    value="Entregado" {{ old('estado') == 'Entregado' ? 'checked' : '' }}
+                >
                 Entregado 
             </label>
         </div>
