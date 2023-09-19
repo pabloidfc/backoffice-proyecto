@@ -3,17 +3,17 @@
 @section('title', "Almacenes")
     
 @section("content")
-<h1>Crear Nuevo Almacen</h1>
+<h1>Modificar Almacen - {{ $almacen->id }}</h1>
 <p>Los campos con (*) son obligatorios!</p>
 <form 
-    action="{{ route("almacen.store") }}"
+    action="{{ route("almacen.update", $almacen->id) }}"
     method="POST"
     style="max-width: 250px"
 >
-    @csrf
+    @csrf @method("PUT")
     <label>
         Nombre* <br>
-        <input name="nombre" type="text" value="{{old('nombre')}}" >
+        <input name="nombre" type="text" value="{{old('nombre', $almacen->nombre)}}">
         @error('nombre')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -37,7 +37,7 @@
 
     <label>
         Departamento* <br>
-        <input name="departamento" type="text" value="{{old('departamento')}}">
+        <input name="departamento" type="text" value="{{old('departamento', $ubicacion->departamento)}}">
         @error('departamento')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -46,7 +46,7 @@
     <br>
     <label>
         Calle* <br>
-        <input name="calle" type="text" value="{{old('calle')}}">
+        <input name="calle" type="text" value="{{old("calle", $ubicacion->calle)}}">
         @error('calle')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -55,7 +55,7 @@
     <br>
     <label>
         N de puerta* <br>
-        <input name="nro_de_puerta" type="number" value="{{old('nro_de_puerta')}}">
+        <input name="nro_de_puerta" type="number" value="{{old('nro_de_puerta', $ubicacion->nro_de_puerta)}}">
         @error('nro_de_puerta')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -64,12 +64,12 @@
     <br>
     <label>
         Esquina <br>
-        <input name="esquina" type="text" value="{{old('esquina')}}">
+        <input name="esquina" type="text" value="{{old('esquina', $ubicacion->esquina)}}">
     </label>
     <br>
     <label>
         Coordenada <br>
-        <input name="coordenada" type="text" value="{{old('coordenada')}}">
+        <input name="coordenada" type="text" value="{{old('coordenada', $ubicacion->coordenada)}}">
     </label>
     <br>
     <button type="submit">Enviar</button>

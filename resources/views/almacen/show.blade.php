@@ -3,34 +3,34 @@
 @section("title", "Almacenes")
 
 @section("content")
-    <h1>Información del Almacen N°<span>{{ $almacen["id"] }}</span></h1>
+    <h1>Información del Almacen N°<span>{{ $almacen->id }}</span></h1>
     <div>
         <ul>
-            <li><strong>Nombre: </strong> {{ $almacen["nombre"] }}</li>
-            <li><strong>Tipo: </strong> {{ $almacen["tipo"] }}</li>
+            <li><strong>Nombre: </strong> {{ $almacen->nombre }}</li>
+            <li><strong>Tipo: </strong> {{ $almacen->tipo }}</li>
             <li>
                 <strong>Ubicacion: </strong>
                 <ul>
                     <li> <strong>Departamento: </strong> 
-                        {{ $almacen["ubicacion"]["departamento"] }}
+                        {{ $ubicacion->departamento }}
                     </li>
                     <li> <strong>Calle: </strong>
-                        {{ $almacen["ubicacion"]["calle"] }}
+                        {{ $ubicacion->calle }}
                     </li>
 
-                    @isset($almacen["ubicacion"]["esquina"])
+                    @isset($ubicacion->esquina)
                         <li> <strong>Esquina: </strong>
-                            {{ $almacen["ubicacion"]["esquina"] }}
+                            {{ $ubicacion->esquina }}
                         </li>
                     @endisset
 
                     <li> <strong>N° de puerta: </strong> 
-                        {{ $almacen["ubicacion"]["nro_de_puerta"] }}
+                        {{ $ubicacion->nro_de_puerta }}
                     </li>
 
-                    @isset($almacen["ubicacion"]["coordenada"])
+                    @isset($ubicacion->coordenada)
                     <li> <strong>Coordenada: </strong>
-                        {{ $almacen["ubicacion"]["coordenada"] }}
+                        {{ $ubicacion->coordenada }}
                     </li>
                 @endisset
                 </ul>
@@ -41,18 +41,12 @@
         <a href="{{ route("almacen.index") }}">Volver</a>
     </button>
 
-    <form 
-        action="{{ route('almacen.update', $almacen["id"]) }}"
-        method="POST"
-        style="display: inline"
-    >
-        @csrf
-        @method("PUT")
-        <button type="submit">Modificar</button>
-    </form>
+    <button>
+        <a href="{{ route("almacen.edit", $almacen->id) }}">Modificar</a>
+    </button>
 
     <form 
-        action="{{ route('almacen.destroy', $almacen["id"]) }}"
+        action="{{ route('almacen.destroy', $almacen->id) }}"
         method="POST"
         style="display: inline"
     >
