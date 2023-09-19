@@ -71,6 +71,10 @@
                 >
                 Entregado 
             </label>
+            @error('estado')
+                <br>
+                <small style="color: red">{{ $message }}</small>   
+            @enderror
         </div>
     </fieldset>
     <label>

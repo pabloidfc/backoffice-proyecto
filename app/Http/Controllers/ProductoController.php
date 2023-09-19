@@ -29,7 +29,7 @@ class ProductoController extends Controller
             "direccion_entrega" => "required|string",
             "fecha_entrega"     => "required|date"
         ], [
-            'almacen_id.exists' => 'The provided id does not match with any Almacen',
+            'almacen_id.exists' => 'The provided id does not match any Almacen',
         ]);
 
         $producto = new Producto();
@@ -83,18 +83,29 @@ class ProductoController extends Controller
     }
 
     public function update(Request $req, $idProducto) {
+        $producto = Producto::find($idProducto);
+        
         $req -> validate([
             "almacen_id"        => ["required", "integer", Rule::exists('almacen', 'id')],
-            "estado"            => "nullable|in:En espera, Almacenado, Loteado, Desloteado, En viaje, Entregado",
             "peso"              => "required|numeric",
             "departamento"      => "required|alpha|min:4",
             "direccion_entrega" => "required|string",
-            "fecha_entrega"     => "required|date"
+            "fecha_entrega"     => "required|date",
+            "estado"            => [
+                "nullable", 
+                Rule::in([
+                    "En espera", 
+                    "Almacenado", 
+                    "Loteado", 
+                    "Desloteado", 
+                    "En viaje", 
+                    "Entregado"
+                ])
+            ]
         ], [
-            'almacen_id.exists' => 'The provided id does not match with any Almacen',
+            'almacen_id.exists' => 'The provided id does not match any Almacen',
         ]);
 
-        $producto = Producto::find($idProducto);
         $producto -> peso              = $req -> input("peso");
         $producto -> departamento      = $req -> input("departamento");
         $producto -> direccion_entrega = $req -> input("direccion_entrega");
