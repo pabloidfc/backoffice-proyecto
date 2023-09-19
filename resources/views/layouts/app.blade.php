@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SERSolutions - @yield("title")</title>
+
+    <style>
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+
 </head>
 <body>
     <header>

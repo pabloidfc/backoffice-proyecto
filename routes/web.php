@@ -31,10 +31,13 @@ Route::controller(LoteController::class) -> group(function () {
 });
 
 Route::controller(AlmacenController::class) -> group(function () {
-    Route::get("/almacen", "index") -> name("almacen.index");
-    Route::get("/almacen/crear", "create") -> name("almacen.create");
-    Route::get("/almacen/{id}", "show") -> name("almacen.show");
-    Route::post("/almacen", "store") -> name("almacen.store");
+    Route::get("/almacen", "index")            -> name("almacen.index");
+    Route::get("/almacen/crear", "create")     -> name("almacen.create");
+    Route::delete("/almacen/{id}", "destroy")  -> name("almacen.destroy");
+    Route::put("/almacen/{id}", "update")      -> name("almacen.update");
+    Route::get("/almacen/{id}/editar", "edit") -> name("almacen.edit");
+    Route::get("/almacen/{id}", "show")        -> name("almacen.show");
+    Route::post("/almacen", "store")           -> name("almacen.store");
 });
 
 // Route::post("/usuarios", [UsuarioController::class, "Crear"]);

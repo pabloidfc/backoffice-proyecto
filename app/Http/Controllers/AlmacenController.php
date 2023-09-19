@@ -15,8 +15,11 @@ class AlmacenController extends Controller
 
     public function show(Request $req, $idAlmacen) {
         $almacen = Almacen::findOrFail($idAlmacen);
-        $almacen -> Ubicacion;
-        return view("almacen.show", ["almacen" => $almacen]);
+        $ubicacion = $almacen -> Ubicacion;
+        return view("almacen.show", [
+            "almacen" => $almacen,
+            "ubicacion" => $ubicacion
+        ]);
     }
 
     public function create(Request $req) {
@@ -26,7 +29,12 @@ class AlmacenController extends Controller
     public function store(Request $req) {
         $req -> validate([
             "nombre" => "required|string|min:2",
-            "tipo" => "required|in:Propio,De terceros"
+            "tipo" => "required|in:Propio,De terceros",
+            "departamento" => "required|string|min:2",
+            "calle" => "required|string|min:2",
+            "esquina" => "nullable|string|min:2",
+            "nro_de_puerta" => "required|integer",
+            "coordenada" => "nullable|string|min:2"
         ]);
 
 
@@ -35,25 +43,62 @@ class AlmacenController extends Controller
         $almacen -> tipo   = $req -> input("tipo");
         $almacen -> save();
 
+        $almacen -> Ubicacion() -> create([
+            "departamento"  => $req -> input("departamento"),
+            "calle"         => $req -> input("calle"),
+            "esquina"       => $req -> input("esquina"),
+            "nro_de_puerta" => $req -> input("nro_de_puerta"),
+            "coordenada"    => $req -> input("coordenada")
+        ]);
+
         return redirect() -> route("almacen.index");
+    }
+
+    public function edit(Request $req, $idAlmacen) {
+        $almacen = Almacen::findOrFail($idAlmacen);
+        $ubicacion = $almacen -> Ubicacion;
+
+        return view("almacen.edit", [
+            "almacen" => $almacen,
+            "ubicacion" => $ubicacion
+        ]);
     }
 
     public function update(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
 
-        if($req -> input("tipo"))        $almacen -> tipo        = $req -> post("tipo");
-        if($req -> input("nombre"))      $almacen -> nombre      = $req -> post("nombre");
-        if($req -> input("direccion"))   $almacen -> direccion   = $req -> post("direccion");
-        if($req -> input("coordenadas")) $almacen -> coordenadas = $req -> post("coordenadas");
+        $req -> validate([
+            "nombre" => "required|string|min:2",
+            "tipo" => "required|in:Propio,De terceros",
+            "departamento" => "required|string|min:2",
+            "calle" => "required|string|min:2",
+            "esquina" => "nullable|string|min:2",
+            "nro_de_puerta" => "required|integer",
+            "coordenada" => "nullable|string|min:2"
+        ]);
 
+        $almacen -> nombre = $req -> input("nombre");
+        $almacen -> tipo   = $req -> input("tipo");
         $almacen -> save();
-        return $almacen;
+
+        $ubicacion = $almacen -> Ubicacion;
+        $ubicacion -> departamento  = $req -> input("departamento");
+        $ubicacion -> calle         = $req -> input("calle");
+        $ubicacion -> esquina       = $req -> input("esquina");
+        $ubicacion -> nro_de_puerta = $req -> input("nro_de_puerta");
+        $ubicacion -> coordenada    = $req -> input("coordenada");
+        $ubicacion -> save();
+
+        return redirect() -> route("almacen.index");
     }
 
     public function destroy(Request $req, $idAlmacen) {
         $almacen = Almacen::find($idAlmacen);
+        $ubicacion = $almacen -> Ubicacion;
+
+        $ubicacion -> delete();
         $almacen -> delete();
 
-        return ["msg" => "La Almacen ha sido eliminada correctamente!"];
+        return redirect() -> route("almacen.index");
     }
 }
