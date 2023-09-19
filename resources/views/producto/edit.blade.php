@@ -3,17 +3,17 @@
 @section('title', "Productos")
     
 @section("content")
-<h1>Crear Nuevo Producto</h1>
+<h1>Modificar Producto - {{ $producto->id }}</h1>
 <p>Los campos con (*) son obligatorios!</p>
 <form 
-    action="{{ route("producto.store") }}"
+    action="{{ route("producto.update", $producto->id) }}"
     method="POST"
     style="display: inline-block"
 >
-    @csrf
+    @csrf @method("PUT")
     <label>
         Almacen* <br>
-        <input name="almacen_id" type="number" value="{{old("almacen_id")}}">
+        <input name="almacen_id" type="number" value="{{old("almacen_id", $producto->almacen_id)}}">
         @error('almacen_id')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -27,7 +27,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="En espera" {{ old('estado') == 'En espera' ? 'checked' : '' }}
+                    value="En espera" {{ old('estado', $producto->estado) == 'En espera' ? 'checked' : '' }}
                 >
                 En espera 
             </label>
@@ -35,7 +35,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Almacenado" {{ old('estado') == 'Almacenado' ? 'checked' : '' }}
+                    value="Almacenado" {{ old('estado', $producto->estado) == 'Almacenado' ? 'checked' : '' }}
                 >
                 Almacenado 
             </label>
@@ -43,7 +43,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Loteado" {{ old('estado') == 'Loteado' ? 'checked' : '' }}
+                    value="Loteado" {{ old('estado', $producto->estado) == 'Loteado' ? 'checked' : '' }}
                 >
                 Loteado 
             </label>
@@ -51,7 +51,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Desloteado" {{ old('estado') == 'Desloteado' ? 'checked' : '' }}
+                    value="Desloteado" {{ old('estado', $producto->estado) == 'Desloteado' ? 'checked' : '' }}
                 >
                 Desloteado 
             </label>
@@ -59,7 +59,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="En viaje" {{ old('estado') == 'En viaje' ? 'checked' : '' }}
+                    value="En viaje" {{ old('estado', $producto->estado) == 'En viaje' ? 'checked' : '' }}
                 >
                 En viaje 
             </label>
@@ -67,15 +67,19 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Entregado" {{ old('estado') == 'Entregado' ? 'checked' : '' }}
+                    value="Entregado" {{ old('estado', $producto->estado) == 'Entregado' ? 'checked' : '' }}
                 >
                 Entregado 
             </label>
+            @error('estado')
+                <br>
+                <small style="color: red">{{ $message }}</small>   
+            @enderror
         </div>
     </fieldset>
     <label>
         Peso* <br>
-        <input name="peso" type="number" value="{{old("peso")}}">
+        <input name="peso" type="number" value="{{old("peso", $producto->peso)}}">
         @error('peso')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -84,7 +88,7 @@
     <br>
     <label>
         Departamento destino* <br>
-        <input name="departamento" type="text" value="{{old("departamento")}}">
+        <input name="departamento" type="text" value="{{old("departamento", $producto->departamento)}}">
         @error('departamento')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -93,7 +97,7 @@
     <br>
     <label>
         Dirección de entrega* <br>
-        <input name="direccion_entrega" type="text" value="{{old("direccion_entrega")}}">
+        <input name="direccion_entrega" type="text" value="{{old("direccion_entrega", $producto->direccion_entrega)}}">
         @error('direccion_entrega')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -102,7 +106,7 @@
     <br>
     <label>
         Fecha de entrega* <br>
-        <input name="fecha_entrega" type="date" value="{{old("fecha_entrega")}}">
+        <input name="fecha_entrega" type="date" value="{{old("fecha_entrega", $producto->fecha_entrega)}}">
         @error('fecha_entrega')
             <br>
             <small style="color: red">{{ $message }}</small>   

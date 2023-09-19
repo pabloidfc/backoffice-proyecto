@@ -28,11 +28,11 @@ class AlmacenController extends Controller
 
     public function store(Request $req) {
         $req -> validate([
-            "nombre" => "required|string|min:2",
+            "nombre" => "required|alpha|min:2",
             "tipo" => "required|in:Propio,De terceros",
-            "departamento" => "required|string|min:2",
-            "calle" => "required|string|min:2",
-            "esquina" => "nullable|string|min:2",
+            "departamento" => "required|alpha|min:2",
+            "calle" => "required|alpha|min:2",
+            "esquina" => "nullable|alpha|min:2",
             "nro_de_puerta" => "required|integer",
             "coordenada" => "nullable|string|min:2"
         ]);
@@ -68,11 +68,11 @@ class AlmacenController extends Controller
         $almacen = Almacen::find($idAlmacen);
 
         $req -> validate([
-            "nombre" => "required|string|min:2",
+            "nombre" => "required|alpha|min:2",
             "tipo" => "required|in:Propio,De terceros",
-            "departamento" => "required|string|min:2",
-            "calle" => "required|string|min:2",
-            "esquina" => "nullable|string|min:2",
+            "departamento" => "required|alpha|min:2",
+            "calle" => "required|alpha|min:2",
+            "esquina" => "nullable|alpha|min:2",
             "nro_de_puerta" => "required|integer",
             "coordenada" => "nullable|string|min:2"
         ]);
