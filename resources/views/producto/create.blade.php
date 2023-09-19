@@ -13,7 +13,7 @@
     @csrf
     <label>
         Almacen* <br>
-        <input name="almacen_id" type="number">
+        <input name="almacen_id" type="number" value="{{old("almacen_id")}}">
         @error('almacen_id')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -51,7 +51,7 @@
     </fieldset>
     <label>
         Peso* <br>
-        <input name="peso" type="number">
+        <input name="peso" type="number" value="{{old("peso")}}">
         @error('peso')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -60,7 +60,7 @@
     <br>
     <label>
         Departamento* <br>
-        <input name="departamento" type="text">
+        <input name="departamento" type="text" value="{{old("departamento")}}">
         @error('departamento')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -69,7 +69,7 @@
     <br>
     <label>
         Dirección de entrega* <br>
-        <input name="direccion_entrega" type="number">
+        <input name="direccion_entrega" type="text" value="{{old("direccion_entrega")}}">
         @error('direccion_entrega')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -78,7 +78,7 @@
     <br>
     <label>
         Fecha de entrega* <br>
-        <input name="fecha_entrega" type="date">
+        <input name="fecha_entrega" type="date" value="{{old("fecha_entrega")}}">
         @error('fecha_entrega')
             <br>
             <small style="color: red">{{ $message }}</small>   
