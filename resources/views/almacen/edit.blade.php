@@ -24,10 +24,23 @@
     <fieldset>
         <legend>Selecciona un tipo*</legend>
         <div>
-            <input type="radio" name="tipo" value="Propio">
-            <label for="propio">Propio</label>
-            <input type="radio" name="tipo" value="De terceros">
-            <label for="de-terceros">De terceros</label>
+
+            <label>
+                <input 
+                    type="radio" 
+                    name="tipo" 
+                    value="Propio" {{ old('tipo', $almacen->tipo) == 'Propio' ? 'checked' : '' }}
+                >
+                Propio
+            </label>
+            <label>
+                <input 
+                    type="radio" 
+                    name="tipo" 
+                    value="De terceros" {{ old('tipo', $almacen->tipo) == 'De terceros' ? 'checked' : '' }}
+                >
+                De terceros
+            </label>
             @error('tipo')
                 <br>
                 <small style="color: red">{{ $message }}</small>   
