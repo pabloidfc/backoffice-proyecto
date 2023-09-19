@@ -49,6 +49,13 @@ class ProductoController extends Controller
         return redirect() -> route("producto.index");
     }
 
+    public function destroy(Request $req, $productoId) {
+        $producto = Producto::find($productoId);
+        $producto -> delete();
+        
+        return redirect() -> route("producto.index");
+    }
+
     public function show(Request $req, $productoId) {
         $producto = Producto::find($productoId);
         $almacen = $producto -> Almacen;

@@ -8,7 +8,7 @@
 <form 
     action="{{ route("almacen.update", $almacen->id) }}"
     method="POST"
-    style="max-width: 250px"
+    style="display: inline-block"
 >
     @csrf @method("PUT")
     <label>
