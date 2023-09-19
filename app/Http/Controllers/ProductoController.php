@@ -14,7 +14,7 @@ class ProductoController extends Controller
         return view("producto.index", ["productos" => $productos]);
     }
 
-    public function create(Request $req) {
+    public function create(Request $req) { // TODO: Mostrar almacenes disponibles
         return view("producto.create");
     }
 
@@ -46,7 +46,15 @@ class ProductoController extends Controller
 
     public function show(Request $req, $productoId) {
         $producto = Producto::find($productoId);
+        $almacen = $producto -> Almacen;
+        $ubicacion = $almacen -> Ubicacion;
+        $lote = $producto -> Lote;
 
-        return view("producto.show", ["producto" => $producto]);
+        return view("producto.show", [
+            "producto" => $producto,
+            "almacen" => $almacen,
+            "ubicacion" => $ubicacion,
+            "lote" => $lote
+        ]);
     }
 }
