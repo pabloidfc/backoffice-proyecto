@@ -22,7 +22,9 @@ Route::get('/', function () {
 
 Route::controller(ProductoController::class) -> group(function () {
     Route::get("/producto", "index") -> name("producto.index");
+    Route::get("/producto/crear", "create") -> name("producto.create");
     Route::get("/producto/{id}", "show") -> name("producto.show");
+    Route::post("producto/", "store") -> name("producto.store");
 });
 
 Route::controller(LoteController::class) -> group(function () {
