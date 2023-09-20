@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\LoteController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,13 @@ Route::controller(SessionController::class) -> group(function () {
 });
 
 Route::middleware("auth")->group(function () {
+    Route::controller(UsuarioController::class) -> group(function () {
+        Route::get("/usuario", "index") -> name("usuario.index");
+        Route::get("/usuario/crear", "create") -> name("usuario.create");
+        Route::get("/usuario/{id}", "show") -> name("usuario.show");
+        Route::post("/usuario", "store") -> name("usuario.store");
+    });
+
     Route::controller(ProductoController::class) -> group(function () {
         Route::get("/producto", "index") -> name("producto.index");
         Route::get("/producto/crear", "create") -> name("producto.create");
