@@ -12,6 +12,15 @@
 >
     @csrf
     <label>
+        CI sin puntos ni guíon* <br>
+        <input name="ci" type="text" value="{{old("ci")}}">
+        @error('ci')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+        @enderror
+    </label>
+    <br>
+    <label>
         Nombre* <br>
         <input name="nombre" type="text" value="{{old("nombre")}}">
         @error('nombre')
@@ -68,28 +77,89 @@
             <small style="color: red">{{ $message }}</small>   
          @enderror
     </label>
+    <br>
+    <label>
+        Confirmar contraseña* <br>
+        <input name="password_confirmation" type="password" value="{{old("password_confirmation")}}">
+        @error('password_confirmation')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+         @enderror
+    </label>
 
     <fieldset>
         <legend>Selecciona un tipo*</legend>
         <div>
             <label>
                 <input 
-                    type="radio" 
-                    name="tipo" 
-                    value="funcionario" {{ old('tipo') == 'funcionario' ? 'checked' : '' }}
+                    type="radio"
+                    name="permisos" 
+                    id="input-funcionario"
+                    value="Funcionario" 
                 >
                 Funcionario
             </label>
             <label>
                 <input 
-                    type="radio" 
-                    name="tipo" 
-                    value="transportista" {{ old('tipo') == 'transportista' ? 'checked' : '' }}
+                    type="radio"
+                    name="permisos" 
+                    value="Transportista" 
                 >
                 Transportista
             </label>
+            @error("permisos")
+                <br>
+                <small style="color: red">{{ $message }}</small>   
+            @enderror
+        </div>
+        <br>
+        <div id="radio-tipo-contenedor" class="d-none">
+            <label>
+                <input 
+                    type="radio"
+                    name="tipo" 
+                    value="Propio" 
+                >
+                Propio
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="tipo" 
+                    value="De terceros" 
+                >
+                De terceros
+            </label>
+            @error("tipo")
+                <br>
+                <small style="color: red">{{ $message }}</small>   
+            @enderror
         </div>
     </fieldset>
+
+    <div id="almacen-empresa-contenedor" class="d-none">
+        <label>
+            Almacen de trabajo* <br>
+            <input name="almacen_id" type="number" id="input-almacen">
+            @error('almacen_id')
+                <br>
+                <small style="color: red">{{ $message }}</small>   
+            @enderror
+        </label>
+     
+        <label id="empresa-perteneciente" class="d-none">
+            Empresa a la que pertenece* <br>
+            <input name="empresa_id" type="number" id="input-empresa">
+            @error('empresa_id')
+                <br>
+                <small style="color: red">{{ $message }}</small>   
+            @enderror
+        </label>
+    </div>
+
+    <br>
+
     <button type="submit">Enviar</button>
 </form>
+<script src="/js/usuario/usuario.create.js"></script>
 @endsection

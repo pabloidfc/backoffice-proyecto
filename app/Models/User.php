@@ -54,11 +54,11 @@ class User extends Authenticatable
         return $this -> hasMany(Telefono::class);
     }
 
-    public function Funcionario() {
-        return $this -> hasOne(Funcionario::class);
-    }
-
     public function Transportista() {
         return $this -> hasOne(Transportista::class);
+    }
+
+    public function Funcionario() {
+        return $this -> hasOne(Funcionario::class);
     }
 }

@@ -13,7 +13,17 @@ class Funcionario extends Model
 
     protected $table = "funcionario";
 
+    protected $fillable = [
+        "almacen_id",
+        "empresa_id",
+        "tipo"
+    ];
+
     public function Usuario() {
         return $this -> belongsTo(User::class);
+    }
+
+    public function Empresa() {
+        return $this -> belongsTo(Cliente::class, "empresa_id");
     }
 }

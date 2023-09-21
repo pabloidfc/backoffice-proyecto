@@ -11,7 +11,7 @@ class Transportista extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = "funcionario";
+    protected $table = "transportista";
 
     public function Usuario() {
         return $this -> belongsTo(User::class);
