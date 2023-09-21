@@ -60,7 +60,12 @@ class ClienteController extends Controller
         ]);
     }
 
-    public function show() {
-        return view("cliente.show");
+    public function show(Request $req, $idCliente) {
+        $cliente = Cliente::findOrFail($idCliente);
+        $ubicacion = $cliente->Ubicacion;
+        return view("cliente.show", [
+            "cliente" => $cliente,
+            "ubicacion" => $ubicacion
+        ]);
     }
 }
