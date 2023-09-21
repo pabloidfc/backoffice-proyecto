@@ -60,4 +60,7 @@ class ClienteController extends Controller
         ]);
     }
 
+    public function show() {
+        return view("cliente.show");
+    }
 }

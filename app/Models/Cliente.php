@@ -14,7 +14,7 @@ class Cliente extends Model
     protected $table = "cliente";
 
     public function Ubicacion() {
-        return $this -> hasOne(Ubicacion::class);
+        return $this -> hasOne(Ubicacion::class, "empresa_id");
     }
 
     public function Telefono() {
