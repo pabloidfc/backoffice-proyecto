@@ -13,12 +13,16 @@ class Telefono extends Model
 
     protected $table = "telefono";
 
+    protected $fillable = [
+        "telefono"
+    ];
+
     public function Usuario() {
         return $this -> belongsTo(User::class);
     } 
 
     public function Cliente() {
-        return $this -> belongsTo(Cliente::class);
+        return $this -> belongsTo(Cliente::class, "empresa_id");
     } 
 
 }

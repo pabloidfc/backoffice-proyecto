@@ -47,6 +47,15 @@
         @enderror
     </label>
     <br>
+    <label>
+        Telefono* <br>
+        <input name="telefono" type="numeric" value="{{old("telefono")}}" >
+        @error("telefono")
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+        @enderror
+    </label>
+    <br>
 
     <label>
         <input type="checkbox" name="ubicacion" id="tiene-ubicacion">

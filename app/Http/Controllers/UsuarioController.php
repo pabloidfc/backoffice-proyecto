@@ -93,4 +93,10 @@ class UsuarioController extends Controller
             ]);
         }
     }
+
+    // public function edit(Request $req, $idUsuario) {
+    //     $usuario = User::findOrFail($idUsuario);
+    //     $permisos = $usuario->Transportista || $usuario->Funcionario;
+
+    // }
 }

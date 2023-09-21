@@ -23,7 +23,8 @@ class ClienteController extends Controller
             "rut" => "required|string|max:12",
             "direccion" => "required|string",
             "email" => "required|email",
-            "cuentabancaria" => "required|numeric"
+            "cuentabancaria" => "required|numeric",
+            "telefono" => "required|digits:9"
         ]);
         
         if ($req->ubicacion == "on") {
@@ -43,11 +44,19 @@ class ClienteController extends Controller
         $cliente -> cuentabancaria = $req -> cuentabancaria;
         $cliente->save();
 
+        $this->crearTelefono($req, $cliente);
+
         if($req->ubicacion == "on") {
             $this->crearUbicacion($req, $cliente);
         }
 
         return redirect()->route("cliente.index");
+    }
+
+    private function crearTelefono($req, $cliente) {
+        $cliente -> Telefono() -> create([
+            "telefono" => $req -> telefono
+        ]);
     }
 
     private function crearUbicacion($req, $cliente) {

@@ -18,7 +18,7 @@ class Cliente extends Model
     }
 
     public function Telefono() {
-        return $this -> hasMany(Telefono::class);
+        return $this -> hasMany(Telefono::class, "empresa_id");
     }
 
     public function Funcionario() {
