@@ -47,7 +47,17 @@
             <small style="color: red">{{ $message }}</small>   
         @enderror
     </label>
-
+    <br>
+    @foreach ($telefonos as $telefono)
+        <label>
+            Telefono* <br>
+            <input name="telefono" type="numeric" value="{{old("telefono", $telefono->telefono)}}" >
+            @error("telefono")
+                <br>
+                <small style="color: red">{{ $message }}</small>   
+            @enderror
+        </label>    
+    @endforeach
     
     <br>
     @if($ubicacion)

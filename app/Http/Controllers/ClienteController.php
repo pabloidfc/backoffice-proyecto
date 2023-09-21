@@ -72,9 +72,11 @@ class ClienteController extends Controller
     public function show(Request $req, $idCliente) {
         $cliente = Cliente::findOrFail($idCliente);
         $ubicacion = $cliente->Ubicacion;
+        $telefonos = $cliente->Telefono;
         return view("cliente.show", [
             "cliente" => $cliente,
-            "ubicacion" => $ubicacion
+            "ubicacion" => $ubicacion,
+            "telefonos" => $telefonos
         ]);
     }
 
@@ -92,9 +94,11 @@ class ClienteController extends Controller
     public function edit(Request $req, $idCliente) {
         $cliente = Cliente::find($idCliente);
         $ubicacion = $cliente->Ubicacion;
+        $telefonos = $cliente->Telefono;
         return view("cliente.edit", [
             "cliente" => $cliente,
-            "ubicacion" => $ubicacion
+            "ubicacion" => $ubicacion,
+            "telefonos" => $telefonos
         ]);
     }
 
@@ -105,7 +109,8 @@ class ClienteController extends Controller
             "rut" => "required|string|max:12",
             "direccion" => "required|string",
             "email" => "required|email",
-            "cuentabancaria" => "required|numeric"
+            "cuentabancaria" => "required|numeric",
+            "telefono" => "required|digits:9"
         ]);
         
         if ($req->has("departamento")) {
@@ -122,7 +127,13 @@ class ClienteController extends Controller
         $cliente -> direccion      = $req -> direccion;
         $cliente -> email          = $req -> email;
         $cliente -> cuentabancaria = $req -> cuentabancaria;
-        $cliente->save();
+        $cliente -> save();
+
+        $telefonos = $cliente -> Telefono;
+        foreach ($telefonos as $telefono) {
+            $telefono -> telefono = $req -> telefono;
+            $telefono -> save();
+        }
 
         if ($req->has("departamento")) {
             $ubicacion = $cliente->Ubicacion;

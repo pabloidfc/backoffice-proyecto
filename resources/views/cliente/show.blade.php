@@ -10,6 +10,9 @@
             <li><strong>Dirección de empresa: </strong> {{ $cliente->direccion }}</li>
             <li><strong>Email de contacto: </strong> {{ $cliente->email }}</li>
             <li><strong>Cuante bancaria: </strong> {{ $cliente->cuentabancaria }}</li>
+            @foreach ($telefonos as $telefono)
+                <li><strong>Teléfono: </strong> {{ $telefono->telefono }}</li>
+            @endforeach
             <li>
                 <strong>Ubicacion el Almacen: </strong>
                 <ul>
