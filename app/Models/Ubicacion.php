@@ -29,6 +29,6 @@ class Ubicacion extends Model
     }
 
     public function Cliente() {
-        return $this -> belongsTo(Cliente::class);
+        return $this -> belongsTo(Cliente::class, "empresa_id");
     }
 }
