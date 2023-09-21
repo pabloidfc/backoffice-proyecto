@@ -70,6 +70,15 @@
     </label>
     <br>
     <label>
+        Teléfono* <br>
+        <input name="telefono" type="number" value="{{old("telefono")}}">
+        @error('telefono')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+         @enderror
+    </label>
+    <br>
+    <label>
         Contraseña* <br>
         <input name="password" type="password" value="{{old("password")}}">
         @error('password')
@@ -86,6 +95,46 @@
             <small style="color: red">{{ $message }}</small>   
          @enderror
     </label>
+
+    <div>
+        <label>
+            Departamento* <br>
+            <input name="departamento" type="text" value="{{old('departamento')}}">
+        </label>
+        @error("departamento")
+            <br>
+            <small style="color: red">{{ $message }}</small> 
+        @enderror
+        <br>
+        <label>
+            Calle* <br>
+            <input name="calle" type="text" value="{{old('calle')}}">
+        </label>
+        @error("calle")
+            <br>
+            <small style="color: red">{{ $message }}</small> 
+        @enderror
+        <br>
+        <label>
+            N° de puerta* <br>
+            <input name="nro_de_puerta" type="number" value="{{old('nro_de_puerta')}}">
+        </label>
+        @error("nro_de_puerta")
+            <br>
+            <small style="color: red">{{ $message }}</small> 
+        @enderror
+        <br>
+        <label>
+            Esquina <br>
+            <input name="esquina" type="text" value="{{old('esquina')}}">
+        </label>
+        <br>
+        <label>
+            Coordenada <br>
+            <input name="coordenada" type="text" value="{{old('coordenada')}}">
+        </label>
+        <br>
+    </div>
 
     <fieldset>
         <legend>Selecciona un tipo*</legend>

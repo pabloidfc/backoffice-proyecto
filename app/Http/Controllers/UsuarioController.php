@@ -30,7 +30,7 @@ class UsuarioController extends Controller
 
     public function store(Request $req) {
         $req -> validate([
-            "ci"        => "required|string|max:8|unique:users",
+            "ci"        => "required|digits:8|unique:users",
             "nombre"    => "required|alpha|max:40",
             "nombre2"   => "nullable|alpha|max:40",
             "apellido"  => "required|alpha|max:40",
@@ -38,6 +38,12 @@ class UsuarioController extends Controller
             "email"     => "required|email|unique:users",
             "password"  => "required|confirmed",
             "permisos"  => "required|in:Funcionario,Transportista",
+            "telefono"  => "required|digits:9",
+            "departamento" => "required|alpha|min:2",
+            "calle" => "required|alpha|min:2",
+            "esquina" => "nullable|alpha|min:2",
+            "nro_de_puerta" => "required|integer",
+            "coordenada" => "nullable|string|min:2"
         ]);
 
         if($req->permisos == "Funcionario") {
@@ -57,14 +63,9 @@ class UsuarioController extends Controller
         }
 
         $usuario = new User;
-        $usuario->ci = $req->input("ci");
-        $usuario->nombre = $req->input("nombre");
-        $usuario->nombre2 = $req->input("nombre2");
-        $usuario->apellido = $req->input("apellido");
-        $usuario->apellido2 = $req->input("apellido2");
-        $usuario->email = $req->input("email");
-        $usuario->password = Hash::make($req->input("password"));
-        $usuario->save();
+        $this->crearUsuario($req, $usuario);
+        $this->crearTelefono($req, $usuario);
+        $this->crearUbicacion($req, $usuario);
 
         if($req->permisos == "Transportista") {
             $this -> crearTransportista($req, $usuario);
@@ -73,6 +74,33 @@ class UsuarioController extends Controller
         }
 
         return redirect() -> route("usuario.index");
+    }
+
+    private function crearUsuario($req, $usuario) {
+        $usuario->ci = $req->input("ci");
+        $usuario->nombre = $req->input("nombre");
+        $usuario->nombre2 = $req->input("nombre2");
+        $usuario->apellido = $req->input("apellido");
+        $usuario->apellido2 = $req->input("apellido2");
+        $usuario->email = $req->input("email");
+        $usuario->password = Hash::make($req->input("password"));
+        $usuario->save();
+    }
+
+    private function crearTelefono($req, $usuario) {
+        $usuario -> Telefono() -> create([
+            "telefono" => $req -> telefono
+        ]);
+    }
+
+    private function crearUbicacion($req, $usuario) {
+        $usuario -> Ubicacion() -> create([
+            "departamento"  => $req -> input("departamento"),
+            "calle"         => $req -> input("calle"),
+            "esquina"       => $req -> input("esquina"),
+            "nro_de_puerta" => $req -> input("nro_de_puerta"),
+            "coordenada"    => $req -> input("coordenada")
+        ]);
     }
 
     private function crearTransportista($req, $usuario) {
