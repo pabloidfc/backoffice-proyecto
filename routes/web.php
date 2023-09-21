@@ -5,6 +5,7 @@ use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\LoteController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,5 +61,11 @@ Route::middleware("auth")->group(function () {
         Route::get("/almacen/{id}/editar", "edit") -> name("almacen.edit");
         Route::get("/almacen/{id}", "show")        -> name("almacen.show");
         Route::post("/almacen", "store")           -> name("almacen.store");
+    });
+
+    Route::controller(ClienteController::class) -> group(function () {
+        Route::get("/cliente", "index") -> name("cliente.index");
+        Route::get("/cliente/crear", "create") -> name("cliente.create");
+        Route::post("/cliente", "store") -> name("cliente.store");
     });
 });
