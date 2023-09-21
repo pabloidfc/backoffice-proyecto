@@ -79,4 +79,52 @@ class ClienteController extends Controller
 
         return redirect() -> route("cliente.index");
     }
+
+    public function edit(Request $req, $idCliente) {
+        $cliente = Cliente::find($idCliente);
+        $ubicacion = $cliente->Ubicacion;
+        return view("cliente.edit", [
+            "cliente" => $cliente,
+            "ubicacion" => $ubicacion
+        ]);
+    }
+
+    public function update(Request $req, $idCliente) {
+        $cliente = Cliente::find($idCliente);
+
+        $req->validate([
+            "rut" => "required|string|max:12",
+            "direccion" => "required|string",
+            "email" => "required|email",
+            "cuentabancaria" => "required|numeric"
+        ]);
+        
+        if ($req->has("departamento")) {
+            $req->validate([
+                "departamento" => "required|alpha|min:2",
+                "calle" => "required|alpha|min:2",
+                "esquina" => "nullable|alpha|min:2",
+                "nro_de_puerta" => "required|integer",
+                "coordenada" => "nullable|string|min:2"
+            ]);
+        }
+
+        $cliente -> rut            = $req -> rut;
+        $cliente -> direccion      = $req -> direccion;
+        $cliente -> email          = $req -> email;
+        $cliente -> cuentabancaria = $req -> cuentabancaria;
+        $cliente->save();
+
+        if ($req->has("departamento")) {
+            $ubicacion = $cliente->Ubicacion;
+            $ubicacion -> departamento  = $req -> input("departamento");
+            $ubicacion -> calle         = $req -> input("calle");
+            $ubicacion -> esquina       = $req -> input("esquina");
+            $ubicacion -> nro_de_puerta = $req -> input("nro_de_puerta");
+            $ubicacion -> coordenada    = $req -> input("coordenada");
+            $ubicacion -> save();
+        }
+
+        return redirect()->route("cliente.index");
+    }
 }

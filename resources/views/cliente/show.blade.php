@@ -47,9 +47,9 @@
         <a href="{{ route("cliente.index") }}">Volver</a>
     </button>
 
-    {{-- <button>
+    <button>
         <a href="{{ route("cliente.edit", $cliente->id) }}">Modificar</a>
-    </button> --}}
+    </button>
 
     <form 
         action="{{ route('cliente.destroy', $cliente->id) }}"

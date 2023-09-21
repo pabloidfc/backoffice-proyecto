@@ -63,11 +63,13 @@ Route::middleware("auth")->group(function () {
         Route::post("/almacen", "store")           -> name("almacen.store");
     });
 
-    Route::controller(ClienteController::class) -> group(function () {
-        Route::get("/cliente", "index")         -> name("cliente.index");
-        Route::get("/cliente/crear", "create")  -> name("cliente.create");
-        Route::get("/cliente/{id}", "show")     -> name("cliente.show");
-        Route::delete("/cliente/{id}", "destroy")     -> name("cliente.destroy");
-        Route::post("/cliente", "store")        -> name("cliente.store");
+    Route::controller(ClienteController::class)    -> group(function () {
+        Route::get("/cliente", "index")            -> name("cliente.index");
+        Route::get("/cliente/crear", "create")     -> name("cliente.create");
+        Route::get("/cliente/{id}", "show")        -> name("cliente.show");
+        Route::delete("/cliente/{id}", "destroy")  -> name("cliente.destroy");
+        Route::put("/cliente/{id}", "update")      -> name("cliente.update");
+        Route::get("/cliente/{id}/editar", "edit") -> name("cliente.edit");
+        Route::post("/cliente", "store")           -> name("cliente.store");
     });
 });
