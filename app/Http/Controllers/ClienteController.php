@@ -68,4 +68,15 @@ class ClienteController extends Controller
             "ubicacion" => $ubicacion
         ]);
     }
+
+    public function destroy(Request $req, $idCliente) {
+        $cliente = Cliente::find($idCliente);
+        $ubicacion = $cliente->Ubicacion;
+
+        $cliente->delete();
+        if ($ubicacion)
+            $ubicacion->delete();
+
+        return redirect() -> route("cliente.index");
+    }
 }

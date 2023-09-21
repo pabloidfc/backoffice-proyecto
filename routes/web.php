@@ -67,6 +67,7 @@ Route::middleware("auth")->group(function () {
         Route::get("/cliente", "index")         -> name("cliente.index");
         Route::get("/cliente/crear", "create")  -> name("cliente.create");
         Route::get("/cliente/{id}", "show")     -> name("cliente.show");
+        Route::delete("/cliente/{id}", "destroy")     -> name("cliente.destroy");
         Route::post("/cliente", "store")        -> name("cliente.store");
     });
 });
