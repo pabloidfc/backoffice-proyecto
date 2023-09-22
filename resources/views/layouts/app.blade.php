@@ -30,7 +30,7 @@
             <a href="{{ route("producto.index") }}">Productos</a>
             <a href="{{ route("lote.index") }}">Lotes</a>
             <a href="{{ route("vehiculo.index") }}">Vehículos</a>
-            <a href="">Rutas</a>
+            <a href="{{ route("ruta.index") }}">Rutas</a>
         </div>
     </header>
     <hr>

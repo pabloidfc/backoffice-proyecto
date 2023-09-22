@@ -8,7 +8,7 @@ use App\Models\Vehiculo;
 class VehiculoController extends Controller
 {
     public function index() {
-        $vehiculos = vehiculo::all();
+        $vehiculos = Vehiculo::all();
         return view("vehiculo.index", ["vehiculos" => $vehiculos]);
     }
 

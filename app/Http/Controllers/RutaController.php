@@ -4,40 +4,67 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ruta;
+use Carbon\Carbon;
 
 class RutaController extends Controller
 {
-    public function Listar(Request $req) {
-        return Ruta::all();
+    public function index() {
+        $rutas = Ruta::all();
+        return view("ruta.index", ["rutas" => $rutas]);
     }
 
-    public function ListarUno(Request $req, $idRuta) {
-        return Ruta::find($idRuta);
+    public function create() {
+        return view("ruta.create");
     }
 
-    public function Crear(Request $req) {
+    public function store(Request $req) {
+        $req->validate([
+            "distanciakm" => "required|numeric|min:1",
+            "tiempo_estimado" => "required|date_format:H:i:s",
+        ]);
+
+        $tiempoEstimado = Carbon::createFromFormat('H:i:s', $req->input('tiempo_estimado'));
+        $tiempoEstimadoFormateado = $tiempoEstimado->format('H:i:s');
+
         $ruta = new Ruta;
-        $ruta -> distanciakm     = $req -> post("distanciakm");
-        $ruta -> tiempo_estimado = $req -> post("tiempo_estimado");
+        $ruta -> distanciakm = $req -> distanciakm;
+        $ruta -> tiempo_estimado = $tiempoEstimadoFormateado;
         $ruta -> save();
 
-        return $ruta;
+        return redirect() -> route("ruta.index");
     }
 
-    public function Modificar(Request $req, $idRuta) {
-        $ruta = Ruta::find($idRuta);
-
-        if($req -> input("distanciakm"))     $ruta -> distanciakm     = $req -> post("distanciakm");
-        if($req -> input("tiempo_estimado")) $ruta -> tiempo_estimado = $req -> post("tiempo_estimado");
-
-        $ruta -> save();
-        return $ruta;
+    public function show(Request $req, $idRuta) {
+        $ruta = Ruta::findOrFail($idRuta);
+        return view("ruta.show", ["ruta" => $ruta]);
     }
 
-    public function Eliminar(Request $req, $idRuta) {
-        $ruta = Ruta::find($idRuta);
+    public function destroy(Request $req, $idRuta) {
+        $ruta = Ruta::findOrFail($idRuta);
         $ruta -> delete();
+        return redirect() -> route("ruta.index");
+    }
 
-        return ["msg" => "La Ruta ha sido eliminada correctamente!"];
+    public function edit(Request $req, $idRuta) {
+        $ruta = Ruta::findOrFail($idRuta);
+        return view("ruta.edit", ["ruta" => $ruta]);
+    }
+
+    public function update(Request $req, $idRuta) {
+        $ruta = Ruta::findOrFail($idRuta);
+
+        $req->validate([
+            "distanciakm" => "required|numeric|min:1",
+            "tiempo_estimado" => "required|date_format:H:i:s",
+        ]);
+
+        $tiempoEstimado = Carbon::createFromFormat('H:i:s', $req->input('tiempo_estimado'));
+        $tiempoEstimadoFormateado = $tiempoEstimado->format('H:i:s');
+
+        $ruta -> distanciakm = $req -> distanciakm;
+        $ruta -> tiempo_estimado = $tiempoEstimadoFormateado;
+        $ruta -> save();
+
+        return redirect() -> route("ruta.index");
     }
 }
