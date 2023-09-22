@@ -6,6 +6,7 @@ use App\Http\Controllers\LoteController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\RutaController;
 use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::controller(SessionController::class) -> group(function () {
 });
 
 Route::middleware("auth")->group(function () {
-    Route::controller(UsuarioController::class)    -> group(function () {
+    Route::controller(UsuarioController::class) -> group(function () {
         Route::get("/usuario", "index")            -> name("usuario.index");
         Route::get("/usuario/crear", "create")     -> name("usuario.create");
         Route::get("/usuario/{id}", "show")        -> name("usuario.show");
@@ -42,7 +43,7 @@ Route::middleware("auth")->group(function () {
         Route::post("/usuario", "store")           -> name("usuario.store");
     });
     
-    Route::controller(VehiculoController::class)    -> group(function () {
+    Route::controller(VehiculoController::class) -> group(function () {
         Route::get("/vehiculo", "index")            -> name("vehiculo.index");
         Route::get("/vehiculo/crear", "create")     -> name("vehiculo.create");
         Route::get("/vehiculo/{id}", "show")        -> name("vehiculo.show");
@@ -51,25 +52,35 @@ Route::middleware("auth")->group(function () {
         Route::delete("/vehiculo/{id}", "destroy")  -> name("vehiculo.destroy");
         Route::post("/vehiculo", "store")           -> name("vehiculo.store");
     });
+    
+    Route::controller(RutaController::class) -> group(function () {
+        Route::get("/ruta", "index") -> name("ruta.index");
+        Route::get("/ruta/crear", "create")     -> name("ruta.create");
+        Route::get("/ruta/{id}", "show")        -> name("ruta.show");
+        Route::get("/ruta/{id}/editar", "edit") -> name("ruta.edit");
+        Route::put("/ruta/{id}", "update")      -> name("ruta.update");
+        Route::delete("/ruta/{id}", "destroy")  -> name("ruta.destroy");
+        Route::post("/ruta", "store")           -> name("ruta.store");
+    });
 
     Route::controller(ProductoController::class) -> group(function () {
-        Route::get("/producto", "index") -> name("producto.index");
-        Route::get("/producto/crear", "create") -> name("producto.create");
-        Route::get("/producto/{id}", "show") -> name("producto.show");
+        Route::get("/producto", "index")            -> name("producto.index");
+        Route::get("/producto/crear", "create")     -> name("producto.create");
+        Route::get("/producto/{id}", "show")        -> name("producto.show");
         Route::get("/producto/{id}/editar", "edit") -> name("producto.edit");
-        Route::put("/producto/{id}", "update") -> name("producto.update");
-        Route::delete("/producto/{id}", "destroy") -> name("producto.destroy");
-        Route::post("producto/", "store") -> name("producto.store");
+        Route::put("/producto/{id}", "update")      -> name("producto.update");
+        Route::delete("/producto/{id}", "destroy")  -> name("producto.destroy");
+        Route::post("producto/", "store")           -> name("producto.store");
     });
     
-    Route::controller(LoteController::class)   -> group(function () {
-        Route::get("/lote", "index")           -> name("lote.index");
-        Route::get("/lote/crear", "create")    -> name("lote.create");
-        Route::get("/lote/{id}", "show")       -> name("lote.show");
+    Route::controller(LoteController::class) -> group(function () {
+        Route::get("/lote", "index")            -> name("lote.index");
+        Route::get("/lote/crear", "create")     -> name("lote.create");
+        Route::get("/lote/{id}", "show")        -> name("lote.show");
         Route::get("/lote/{id}/editar", "edit") -> name("lote.edit");
-        Route::put("/lote/{id}", "update") -> name("lote.update");
-        Route::delete("/lote/{id}", "destroy") -> name("lote.destroy");
-        Route::post("lote", "store")           -> name("lote.store");
+        Route::put("/lote/{id}", "update")      -> name("lote.update");
+        Route::delete("/lote/{id}", "destroy")  -> name("lote.destroy");
+        Route::post("lote", "store")            -> name("lote.store");
     });
     
     Route::controller(AlmacenController::class) -> group(function () {
@@ -82,7 +93,7 @@ Route::middleware("auth")->group(function () {
         Route::post("/almacen", "store")           -> name("almacen.store");
     });
 
-    Route::controller(ClienteController::class)    -> group(function () {
+    Route::controller(ClienteController::class) -> group(function () {
         Route::get("/cliente", "index")            -> name("cliente.index");
         Route::get("/cliente/crear", "create")     -> name("cliente.create");
         Route::get("/cliente/{id}", "show")        -> name("cliente.show");
