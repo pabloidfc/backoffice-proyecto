@@ -71,11 +71,11 @@
         <a href="{{ route("usuario.index") }}">Volver</a>
     </button>
 
-    <button>
+    {{-- <button>
         <a href="{{ route("usuario.edit", $usuario->id) }}">Modificar</a>
-    </button>
+    </button> --}}
 
-    {{-- <form 
+    <form 
         action="{{ route('usuario.destroy', $usuario->id) }}"
         method="POST"
         style="display: inline"
@@ -83,5 +83,5 @@
         @csrf
         @method("DELETE")
         <button type="submit">Eliminar</button>
-    </form> --}}
+    </form>
 @endsection

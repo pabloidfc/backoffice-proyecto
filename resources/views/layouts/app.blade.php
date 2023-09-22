@@ -36,6 +36,14 @@
     <hr>
 
     <main>
+
+        @if (session('msg'))
+            <div class="alert alert-success">
+                {{ session('msg') }}
+            </div>
+        @endif
+    
+
         @yield('content')
     </main>
 </body>

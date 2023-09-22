@@ -139,9 +139,12 @@ class UsuarioController extends Controller
         ]);
     }
 
-    // public function edit(Request $req, $idUsuario) {
-    //     $usuario = User::findOrFail($idUsuario);
-    //     $permisos = $usuario->Transportista || $usuario->Funcionario;
+    public function destroy(Request $req, $idUsuario) {
+        $usuario = User::find($idUsuario);
+        if($usuario->id == 1) 
+            return redirect()->route("usuario.index")->with("msg", "No puedes eliminar al Administrador!!");
+        $usuario -> delete();
+        return redirect()->route("usuario.index");
 
-    // }
+    }
 }
