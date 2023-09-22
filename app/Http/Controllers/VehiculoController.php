@@ -7,41 +7,30 @@ use App\Models\Vehiculo;
 
 class VehiculoController extends Controller
 {
-    public function Listar(Request $req) {
-        return Vehiculo::all();
+    public function index() {
+        $vehiculos = vehiculo::all();
+        return view("vehiculo.index", ["vehiculos" => $vehiculos]);
     }
 
-    public function ListarUno(Request $req, $idVehiculo) {
-        return Vehiculo::find($idVehiculo);
+    public function create() {
+        return view("vehiculo.create");
     }
 
-    public function Crear(Request $req) {
+    public function store(Request $req) {
+        $req -> validate([
+            "matricula" => "required|string|max:10",
+            "estado" => "required|in:Disponible,No disponible,En reparación",
+            "peso" => "required|numeric",
+            "limite_peso" => "required|numeric"
+        ]);
+
         $vehiculo = new Vehiculo;
-        $vehiculo -> peso        = $req -> post("peso");
-        $vehiculo -> estado      = $req -> post("estado");
-        $vehiculo -> matricula   = $req -> post("matricula");
-        $vehiculo -> peso_limite = $req -> post("peso_limite");
+        $vehiculo -> matricula   = $req -> matricula; 
+        $vehiculo -> estado      = $req -> estado; 
+        $vehiculo -> peso        = $req -> peso; 
+        $vehiculo -> limite_peso = $req -> limite_peso; 
         $vehiculo -> save();
 
-        return $vehiculo;
-    }
-
-    public function Modificar(Request $req, $idVehiculo) {
-        $vehiculo = Vehiculo::find($idVehiculo);
-
-        if($req -> input("peso"))        $vehiculo -> peso        = $req -> post("peso");
-        if($req -> input("estado"))      $vehiculo -> estado      = $req -> post("estado");
-        if($req -> input("matricula"))   $vehiculo -> matricula   = $req -> post("matricula");
-        if($req -> input("peso_limite")) $vehiculo -> peso_limite = $req -> post("peso_limite");
-        
-        $vehiculo -> save();
-        return $vehiculo;
-    }
-
-    public function Eliminar(Request $req, $idVehiculo) {
-        $vehiculo = Vehiculo::find($idVehiculo);
-        $vehiculo -> delete();
-
-        return ["msg" => "El Vehiculo ha sido eliminado correctamente!"];
+        return redirect() -> route("vehiculo.index");
     }
 }
