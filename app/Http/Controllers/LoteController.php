@@ -34,14 +34,13 @@ class LoteController extends Controller
 
     public function store(Request $req) {
         $req -> validate([
-            "creador_id" => ["required", "integer", Rule::exists('users', 'id')],
             "almacen_destino" => ["required", "integer", Rule::exists('almacen', 'id')],
             "estado" => "nullable|in:Creado,En viaje,Desarmado"
         ]);
 
         $lote = new Lote;
         $lote -> peso = 0;
-        $lote -> Creador() -> associate($req->creador_id);
+        $lote -> Creador() -> associate(1);
         $lote -> Almacen() -> associate($req->almacen_destino);
         $lote -> save();
 
@@ -53,5 +52,30 @@ class LoteController extends Controller
         $lote -> delete();
 
         return redirect() -> route("lote.index");
+    }
+
+    public function edit(Request $req, $idLote) {
+        $lote = Lote::findOrFail($idLote);
+        $almacen = $lote -> Almacen; 
+        return view("lote.edit", [
+            "lote" => $lote,
+            "almacen" => $almacen
+        ]);
+    }
+
+    public function update(Request $req, $idLote) {
+        $lote = Lote::findOrFail($idLote);
+
+        $req -> validate([
+            "almacen_destino" => ["required", "integer", Rule::exists('almacen', 'id')],
+            "estado" => "nullable|in:Creado,En viaje,Desarmado"
+        ], [
+            "almacen_destino.exists" => "The provided id not match any Almacen"
+        ]);
+
+        $lote -> Almacen() -> associate($req->almacen_destino);
+        $lote -> save();
+
+        return redirect()->route("lote.index");
     }
 }

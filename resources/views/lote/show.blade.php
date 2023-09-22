@@ -62,9 +62,9 @@
         <a href="{{ route("lote.index") }}">Volver</a>
     </button>
 
-    {{-- <button>
+    <button>
         <a href="{{ route("lote.edit", $lote->id) }}">Modificar</a>
-    </button> --}}
+    </button>
 
     <form 
         action="{{ route('lote.destroy', $lote->id) }}"

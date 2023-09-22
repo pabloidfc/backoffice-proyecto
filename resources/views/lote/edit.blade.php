@@ -3,17 +3,17 @@
 @section('title', "Lote")
     
 @section("content")
-<h1>Crear Nuevo Lote</h1>
+<h1>Modificar Lote - {{ $lote->id }}</h1>
 <p>Los campos con (*) son obligatorios!</p>
 <form 
-    action="{{ route("lote.store") }}"
+    action="{{ route("lote.update", $lote->id) }}"
     method="POST"
     style="display: inline-block"
 >
-    @csrf
+    @csrf @method("PUT")
     <label>
         Almacen Destino* <br>
-        <input name="almacen_destino" type="number" value="{{old("almacen_destino")}}">
+        <input name="almacen_destino" type="number" value="{{old("almacen_destino", $almacen->id)}}">
         @error('almacen_destino')
             <br>
             <small style="color: red">{{ $message }}</small>   
@@ -28,7 +28,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Creado" {{ old('estado') == 'Creado' ? 'checked' : '' }}
+                    value="Creado" {{ old('estado', $lote->estado) == 'Creado' ? 'checked' : '' }}
                 >
                 Creado
             </label>
@@ -36,7 +36,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="En viaje" {{ old('estado') == 'En viaje' ? 'checked' : '' }}
+                    value="En viaje" {{ old('estado', $lote->estado) == 'En viaje' ? 'checked' : '' }}
                 >
                 En viaje
             </label>
@@ -44,7 +44,7 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Desarmado" {{ old('estado') == 'Desarmado' ? 'checked' : '' }}
+                    value="Desarmado" {{ old('estado', $lote->estado) == 'Desarmado' ? 'checked' : '' }}
                 >
                 Desarmado
             </label>
