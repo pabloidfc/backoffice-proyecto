@@ -4,6 +4,8 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\LoteController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +31,16 @@ Route::controller(SessionController::class) -> group(function () {
 });
 
 Route::middleware("auth")->group(function () {
+    Route::controller(UsuarioController::class)    -> group(function () {
+        Route::get("/usuario", "index")            -> name("usuario.index");
+        Route::get("/usuario/crear", "create")     -> name("usuario.create");
+        Route::get("/usuario/{id}", "show")        -> name("usuario.show");
+        Route::get("/usuario/{id}/editar", "edit") -> name("usuario.edit");
+        Route::put("/usuario/{id}", "update")      -> name("usuario.update");
+        Route::delete("/usuario/{id}", "destroy")  -> name("usuario.destroy");
+        Route::post("/usuario", "store")           -> name("usuario.store");
+    });
+
     Route::controller(ProductoController::class) -> group(function () {
         Route::get("/producto", "index") -> name("producto.index");
         Route::get("/producto/crear", "create") -> name("producto.create");
@@ -52,5 +64,15 @@ Route::middleware("auth")->group(function () {
         Route::get("/almacen/{id}/editar", "edit") -> name("almacen.edit");
         Route::get("/almacen/{id}", "show")        -> name("almacen.show");
         Route::post("/almacen", "store")           -> name("almacen.store");
+    });
+
+    Route::controller(ClienteController::class)    -> group(function () {
+        Route::get("/cliente", "index")            -> name("cliente.index");
+        Route::get("/cliente/crear", "create")     -> name("cliente.create");
+        Route::get("/cliente/{id}", "show")        -> name("cliente.show");
+        Route::delete("/cliente/{id}", "destroy")  -> name("cliente.destroy");
+        Route::put("/cliente/{id}", "update")      -> name("cliente.update");
+        Route::get("/cliente/{id}/editar", "edit") -> name("cliente.edit");
+        Route::post("/cliente", "store")           -> name("cliente.store");
     });
 });

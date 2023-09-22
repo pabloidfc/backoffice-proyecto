@@ -6,23 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Telefono extends Model
+class Administrador extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = "telefono";
-
-    protected $fillable = [
-        "telefono"
-    ];
+    protected $table = "administrador";
 
     public function Usuario() {
         return $this -> belongsTo(User::class);
-    } 
-
-    public function Cliente() {
-        return $this -> belongsTo(Cliente::class, "empresa_id");
-    } 
-
+    }
 }
