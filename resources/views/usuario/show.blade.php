@@ -71,9 +71,9 @@
         <a href="{{ route("usuario.index") }}">Volver</a>
     </button>
 
-    {{-- <button>
+    <button>
         <a href="{{ route("usuario.edit", $usuario->id) }}">Modificar</a>
-    </button> --}}
+    </button>
 
     <form 
         action="{{ route('usuario.destroy', $usuario->id) }}"

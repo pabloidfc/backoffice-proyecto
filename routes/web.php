@@ -36,6 +36,7 @@ Route::middleware("auth")->group(function () {
         Route::get("/usuario/crear", "create")     -> name("usuario.create");
         Route::get("/usuario/{id}", "show")        -> name("usuario.show");
         Route::get("/usuario/{id}/editar", "edit") -> name("usuario.edit");
+        Route::put("/usuario/{id}", "update")      -> name("usuario.update");
         Route::delete("/usuario/{id}", "destroy")  -> name("usuario.destroy");
         Route::post("/usuario", "store")           -> name("usuario.store");
     });

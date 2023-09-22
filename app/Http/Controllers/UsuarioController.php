@@ -32,9 +32,9 @@ class UsuarioController extends Controller
             "password"  => "required|confirmed",
             "permisos"  => "required|in:Funcionario,Transportista",
             "telefono"  => "required|digits:9",
-            "departamento" => "required|alpha|min:2",
-            "calle" => "required|alpha|min:2",
-            "esquina" => "nullable|alpha|min:2",
+            "departamento" => "required|string|min:2",
+            "calle" => "required|string|min:2",
+            "esquina" => "nullable|string|min:2",
             "nro_de_puerta" => "required|integer",
             "coordenada" => "nullable|string|min:2"
         ]);
@@ -146,5 +146,59 @@ class UsuarioController extends Controller
         $usuario -> delete();
         return redirect()->route("usuario.index");
 
+    }
+
+    public function edit(Request $req, $idUsuario) {
+        $usuario   = User::find($idUsuario);
+        $telefonos = $usuario->Telefono;
+        $ubicacion = $usuario->Ubicacion;
+
+        return view("usuario.edit", [
+            "usuario"   => $usuario,
+            "telefonos" => $telefonos,
+            "ubicacion" => $ubicacion
+        ]);
+    }
+    
+    public function update(Request $req, $idUsuario) {
+        $usuario = User::findOrFail($idUsuario);
+
+        $req -> validate([
+            "nombre"        => "required|alpha|max:40",
+            "nombre2"       => "nullable|alpha|max:40",
+            "apellido"      => "required|alpha|max:40",
+            "apellido2"     => "required|alpha|max:40",
+            "email"         => "required|email",
+            "telefono"      => "required|digits:9",
+            "departamento"  => "required|string|min:2",
+            "calle"         => "required|string|min:2",
+            "esquina"       => "nullable|string|min:2",
+            "nro_de_puerta" => "required|integer",
+            "coordenada"    => "nullable|string|min:2"
+        ]);
+
+        $usuario->nombre = $req->input("nombre");
+        $usuario->nombre2 = $req->input("nombre2");
+        $usuario->apellido = $req->input("apellido");
+        $usuario->apellido2 = $req->input("apellido2");
+        $usuario->email = $req->input("email");
+        $usuario->save();
+
+        $telefonos = $usuario->Telefono;
+        $ubicacion = $usuario->Ubicacion;
+
+        $ubicacion->departamento  = $req -> input("departamento");
+        $ubicacion->calle         = $req -> input("calle");
+        $ubicacion->esquina       = $req -> input("esquina");
+        $ubicacion->nro_de_puerta = $req -> input("nro_de_puerta");
+        $ubicacion->coordenada    = $req -> input("coordenada");
+        $ubicacion->save();
+
+        foreach($telefonos as $telefono) {
+            $telefono->telefono = $req->input("telefono");
+            $telefono->save();
+        }
+
+        return redirect()->route("usuario.index");
     }
 }

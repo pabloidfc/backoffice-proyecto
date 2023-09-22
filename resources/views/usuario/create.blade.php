@@ -127,11 +127,19 @@
         <label>
             Esquina <br>
             <input name="esquina" type="text" value="{{old('esquina')}}">
+            @error("esquina")
+                <br>
+                <small style="color: red">{{ $message }}</small> 
+            @enderror
         </label>
         <br>
         <label>
             Coordenada <br>
             <input name="coordenada" type="text" value="{{old('coordenada')}}">
+            @error("esquina")
+                <br>
+                <small style="color: red">{{ $message }}</small> 
+            @enderror
         </label>
         <br>
     </div>

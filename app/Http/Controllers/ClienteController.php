@@ -29,9 +29,9 @@ class ClienteController extends Controller
         
         if ($req->ubicacion == "on") {
             $req->validate([
-                "departamento" => "required|alpha|min:2",
-                "calle" => "required|alpha|min:2",
-                "esquina" => "nullable|alpha|min:2",
+                "departamento" => "required|string|min:2",
+                "calle" => "required|string|min:2",
+                "esquina" => "nullable|string|min:2",
                 "nro_de_puerta" => "required|integer",
                 "coordenada" => "nullable|string|min:2"
             ]);
@@ -115,9 +115,9 @@ class ClienteController extends Controller
         
         if ($req->has("departamento")) {
             $req->validate([
-                "departamento" => "required|alpha|min:2",
-                "calle" => "required|alpha|min:2",
-                "esquina" => "nullable|alpha|min:2",
+                "departamento" => "required|string|min:2",
+                "calle" => "required|string|min:2",
+                "esquina" => "nullable|string|min:2",
                 "nro_de_puerta" => "required|integer",
                 "coordenada" => "nullable|string|min:2"
             ]);
