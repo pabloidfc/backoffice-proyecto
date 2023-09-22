@@ -64,7 +64,7 @@
 
     {{-- <button>
         <a href="{{ route("lote.edit", $lote->id) }}">Modificar</a>
-    </button>
+    </button> --}}
 
     <form 
         action="{{ route('lote.destroy', $lote->id) }}"
@@ -74,5 +74,5 @@
         @csrf
         @method("DELETE")
         <button type="submit">Eliminar</button>
-    </form> --}}
+    </form>
 @endsection

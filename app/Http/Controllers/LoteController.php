@@ -47,4 +47,11 @@ class LoteController extends Controller
 
         return redirect()->route("lote.index");
     }
+
+    public function destroy(Request $req, $idLote) {
+        $lote = Lote::findOrFail($idLote);
+        $lote -> delete();
+
+        return redirect() -> route("lote.index");
+    }
 }
