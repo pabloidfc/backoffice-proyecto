@@ -21,13 +21,6 @@ class UsuarioController extends Controller
         return view("usuario.create");
     }
 
-    public function show(Request $req, $idUsuario) {
-        $usuario = User::find($idUsuario);
-        return view("usuario.show", [
-            "usuario" => $usuario
-        ]);
-    }
-
     public function store(Request $req) {
         $req -> validate([
             "ci"        => "required|digits:8|unique:users",
@@ -120,6 +113,30 @@ class UsuarioController extends Controller
                 "tipo" => $req->tipo
             ]);
         }
+    }
+
+    public function show(Request $req, $idUsuario) {
+        $usuario   = User::find($idUsuario);
+        $telefonos = $usuario->Telefono;
+        $ubicacion = $usuario->Ubicacion;
+        $permisos  = [
+            $usuario->Transportista,
+            $usuario->Funcionario,
+            $usuario->Administrador,
+        ];
+
+        $almacen = null;
+        if($permisos[1]) {
+            $almacen = $permisos[1]->Almacen;
+        }
+
+        return view("usuario.show", [
+            "usuario"   => $usuario,
+            "telefonos" => $telefonos,
+            "ubicacion" => $ubicacion,
+            "permisos"  => $permisos,
+            "almacen"   => $almacen
+        ]);
     }
 
     // public function edit(Request $req, $idUsuario) {

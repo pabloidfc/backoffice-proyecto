@@ -26,4 +26,8 @@ class Funcionario extends Model
     public function Empresa() {
         return $this -> belongsTo(Cliente::class, "empresa_id");
     }
+
+    public function Almacen() {
+        return $this -> belongsTo(Almacen::class);
+    }
 }

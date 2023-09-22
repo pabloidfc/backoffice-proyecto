@@ -58,6 +58,10 @@ class User extends Authenticatable
         return $this -> hasOne(Transportista::class);
     }
 
+    public function Administrador() {
+        return $this -> hasOne(Administrador::class);
+    }
+
     public function Funcionario() {
         return $this -> hasOne(Funcionario::class);
     }
