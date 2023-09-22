@@ -24,9 +24,9 @@
     <fieldset>
         <legend>Selecciona un tipo*</legend>
         <div>
-            <input type="radio" name="tipo" value="Propio">
+            <input type="radio" name="tipo" id="propio" value="Propio">
             <label for="propio">Propio</label>
-            <input type="radio" name="tipo" value="De terceros">
+            <input type="radio" name="tipo" id="de-terceros" value="De terceros">
             <label for="de-terceros">De terceros</label>
             @error('tipo')
                 <br>

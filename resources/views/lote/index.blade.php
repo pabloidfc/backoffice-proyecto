@@ -1,11 +1,15 @@
 @extends("layouts.app")
 
-@section("title", "Lotes")
+@section("title", "Lote")
 
 @section("content")
-<div style="display: flex;flex-direction: column">
+<h3>
+    <a href="{{ route("lote.create") }}">Crear nuevo Lote</a>
+</h3>
+
+<div style="display: inline-flex;flex-direction: column">
     @foreach ($lotes as $lote)
-        <a href="{{ route("infoLote", $lote["id"]) }}"> <strong>Lote N°{{ $lote["id"] }}</strong> </a>
+        <a href="{{ route("lote.show", $lote->id) }}"> <strong>Lote N°{{ $lote->id }}</strong> </a>
     @endforeach
 </div>   
 @endsection

@@ -52,8 +52,10 @@ Route::middleware("auth")->group(function () {
     });
     
     Route::controller(LoteController::class) -> group(function () {
-        Route::get("/lote", "index") -> name("lote.index");
-        Route::get("/lote/{id}", "show") -> name("lote.show");
+        Route::get("/lote", "index")        -> name("lote.index");
+        Route::get("/lote/crear", "create") -> name("lote.create");
+        Route::get("/lote/{id}", "show")    -> name("lote.show");
+        Route::post("lote", "store") -> name("lote.store");
     });
     
     Route::controller(AlmacenController::class) -> group(function () {
