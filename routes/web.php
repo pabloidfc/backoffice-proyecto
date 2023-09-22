@@ -6,6 +6,7 @@ use App\Http\Controllers\LoteController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,16 @@ Route::middleware("auth")->group(function () {
         Route::put("/usuario/{id}", "update")      -> name("usuario.update");
         Route::delete("/usuario/{id}", "destroy")  -> name("usuario.destroy");
         Route::post("/usuario", "store")           -> name("usuario.store");
+    });
+    
+    Route::controller(VehiculoController::class)    -> group(function () {
+        Route::get("/vehiculo", "index")            -> name("vehiculo.index");
+        Route::get("/vehiculo/crear", "create")     -> name("vehiculo.create");
+        Route::get("/vehiculo/{id}", "show")        -> name("vehiculo.show");
+        Route::get("/vehiculo/{id}/editar", "edit") -> name("vehiculo.edit");
+        Route::put("/vehiculo/{id}", "update")      -> name("vehiculo.update");
+        Route::delete("/vehiculo/{id}", "destroy")  -> name("vehiculo.destroy");
+        Route::post("/vehiculo", "store")           -> name("vehiculo.store");
     });
 
     Route::controller(ProductoController::class) -> group(function () {
