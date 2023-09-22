@@ -1,26 +1,24 @@
 @extends("layouts.app")
 
-@section('title', "Lote")
+@section('title', "Vehiculos")
     
 @section("content")
-<h1>Modificar Lote - {{ $lote->id }}</h1>
+<h1>Modificar Vehículo - {{ $vehiculo->id }}</h1>
 <p>Los campos con (*) son obligatorios!</p>
 <form 
-    action="{{ route("lote.update", $lote->id) }}"
+    action="{{ route("vehiculo.update", $vehiculo->id) }}"
     method="POST"
     style="display: inline-block"
 >
     @csrf @method("PUT")
     <label>
-        Almacen Destino* <br>
-        <input name="almacen_destino" type="number" value="{{old("almacen_destino", $almacen->id)}}">
-        @error('almacen_destino')
+        Matrícula* <br>
+        <input name="matricula" type="text" value="{{old("matricula", $vehiculo->matricula)}}">
+        @error('matricula')
             <br>
             <small style="color: red">{{ $message }}</small>   
         @enderror
     </label>
-    <br>
-
     <fieldset>
         <legend>Selecciona un estado</legend>
         <div>
@@ -28,25 +26,25 @@
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Creado" {{ old('estado', $lote->estado) == 'Creado' ? 'checked' : '' }}
+                    value="Disponible" {{ old('estado', $vehiculo->estado) == 'Disponible' ? 'checked' : '' }}
                 >
-                Creado
+                Disponible
             </label>
             <label>
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="En viaje" {{ old('estado', $lote->estado) == 'En viaje' ? 'checked' : '' }}
+                    value="No disponible" {{ old('estado', $vehiculo->estado) == 'No disponible' ? 'checked' : '' }}
                 >
-                En viaje
+                No disponible
             </label>
             <label>
                 <input 
                     type="radio" 
                     name="estado" 
-                    value="Desarmado" {{ old('estado', $lote->estado) == 'Desarmado' ? 'checked' : '' }}
+                    value="En reparación" {{ old('estado', $vehiculo->estado) == 'En reparación' ? 'checked' : '' }}
                 >
-                Desarmado
+                En reparación
             </label>
             @error('estado')
                 <br>
@@ -54,6 +52,24 @@
             @enderror
         </div>
     </fieldset>
+    <br>
+    <label>
+        Peso del vehículo* <br>
+        <input name="peso" type="numeric" value="{{old("peso", $vehiculo->peso)}}">
+        @error('peso')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+        @enderror
+    </label>
+    <br>
+    <label>
+        Límite de peso* <br>
+        <input name="limite_peso" type="numeric" value="{{old("limite_peso", $vehiculo->limite_peso)}}">
+        @error('limite_peso')
+            <br>
+            <small style="color: red">{{ $message }}</small>   
+        @enderror
+    </label>
     <br>
     <button type="submit">Enviar</button>
 </form>
