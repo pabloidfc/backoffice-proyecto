@@ -22,19 +22,26 @@
 </head>
 <body>
     <header>
-        <div>
-            <a href="{{ route("home") }}">Home</a>
-            <a href="{{ route("usuario.index") }}">Usuarios</a>
-            <a href="{{ route("cliente.index") }}">Clientes</a>
-            <a href="{{ route("almacen.index") }}">Almacenes</a>
-            <a href="{{ route("producto.index") }}">Productos</a>
-            <a href="{{ route("lote.index") }}">Lotes</a>
-            <a href="{{ route("vehiculo.index") }}">Vehículos</a>
-            <a href="{{ route("ruta.index") }}">Rutas</a>
-        </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{{ route("home") }}">SERSolutions</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link active" aria-current="page" href="{{ route("usuario.index") }}">Usuarios</a>
+                  <a class="nav-link active" aria-current="page" href="{{ route("cliente.index") }}">Clientes</a>
+                  <a class="nav-link active" aria-current="page" href="{{ route("almacen.index") }}">Almacenes</a>
+                  <a class="nav-link active" aria-current="page" href="{{ route("producto.index") }}">Productos</a>
+                  <a class="nav-link active" aria-current="page" href="{{ route("lote.index") }}">Lotes</a>
+                  <a class="nav-link active" aria-current="page" href="{{ route("vehiculo.index") }}">Vehículos</a>
+                  <a class="nav-link active" aria-current="page" href="{{ route("ruta.index") }}">Rutas</a>
+                </div>
+              </div>
+            </div>
+          </nav>
     </header>
-    <hr>
-
     <main>
 
         @if (session('msg'))
