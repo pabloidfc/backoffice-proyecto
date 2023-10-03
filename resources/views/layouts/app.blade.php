@@ -11,18 +11,10 @@
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <style>
-        a {
-            text-decoration: none;
-            color: #000;
-        }
-    </style>
-
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-secondary mb-4">
             <div class="container-fluid">
               <a class="navbar-brand" href="{{ route("home") }}">SERSolutions</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
