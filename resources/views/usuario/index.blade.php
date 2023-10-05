@@ -9,7 +9,7 @@
         <a href="{{ route("usuario.create") }}" class="btn btn-primary mb-4">Crear nuevo usuario</a>
         <div class="row gap-1">
             @foreach ($usuarios as $usuario)
-            <div class="col-12 col-lg d-grid gap-4 rounded shadow-sm p-3">
+            <div class="col-12 col-lg d-grid gap-4 rounded shadow p-3">
                 <a 
                     class="text-decoration-none text-dark"
                     href="{{ route("usuario.show", $usuario->id) }}"
