@@ -10,7 +10,13 @@ use Illuminate\Validation\Rule;
 class UsuarioController extends Controller
 {
     public function index() {
-        $usuarios = User::all();
+        $usuarios = User::paginate(12);
+
+        foreach ($usuarios as $usuario) {
+            if ($usuario->Transportista) $usuario->permisos = "Transportista";
+            if ($usuario->Funcionario) $usuario->permisos = "Funcionario";
+            if ($usuario->Administrador) $usuario->permisos = "Administrador";
+        }
 
         return view("usuario.index", [
             "usuarios" => $usuarios

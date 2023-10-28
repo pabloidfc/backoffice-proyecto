@@ -1,28 +1,33 @@
-@extends('layouts.app')
-@section('title', "Usuarios")
+@extends("layouts.app")
+@section("title", "Usuarios")
 
 @section("content")
-    
 <div class="container">
-    <h1>Usuario</h1>
-    <div class="col">
+    <div class="d-lg-flex justify-content-lg-between mb-lg-2">
+        <h1>Usuarios</h1>
         <a href="{{ route("usuario.create") }}" class="btn btn-primary mb-4">Crear nuevo usuario</a>
-        <div class="row gap-1">
+    </div>
+    <div class="col px-2">
+        <div class="row">
             @foreach ($usuarios as $usuario)
-            <div class="col-12 col-lg d-grid gap-4 rounded shadow p-3">
-                <a 
-                    class="text-decoration-none text-dark"
-                    href="{{ route("usuario.show", $usuario->id) }}"
-                    role="button"
-                >
-                    <strong>{{ $usuario->id }} - {{ $usuario->nombre }} {{ $usuario->apellido }}</strong> 
-                </a>
+            <div class="col-12 col-lg-4 d-grid rounded shadow-sm py-3">
+                <div class="header mb-4">
+                    <a 
+                        class="text-decoration-none text-dark d-block"
+                        href="{{ route("usuario.show", $usuario->id) }}"
+                        role="button"
+                    >
+                        <strong>{{ $usuario->nombre }} {{ $usuario->apellido }} {{ $usuario->apellido2 }}</strong> 
+                    </a>
+                    <span class="d-block text-primary"> <strong> {{ $usuario->permisos }} </strong> </span>
+                    <span> {{ $usuario->email }} </span>
+                </div>
                 <div class="btn-group col-1">
                     <a class="btn btn-success" href="{{ route("usuario.edit", $usuario->id) }}">
                         Editar
                     </a>
                     <form 
-                        action="{{ route('usuario.destroy', $usuario->id) }}"
+                        action="{{ route("usuario.destroy", $usuario->id) }}"
                         method="POST"
                         role="button"
                         class="btn btn-danger"
@@ -40,6 +45,14 @@
             @endforeach
         </div>
     </div>
+    <div class="mt-5">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {{ $usuarios->links() }}
+            </ul>
+        </nav>
+    </div>
 </div>
+
 
 @endsection
