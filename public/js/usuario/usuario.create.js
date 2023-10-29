@@ -30,7 +30,7 @@ addEventListener("DOMContentLoaded", ()=> {
         input.addEventListener("change", toggleOpcionTipo)
     })
     inputsRadioTipo.forEach(input => {
-        input.addEventListener("click", toggleInputAlmacen);
+        input.addEventListener("click", toggleInputAlmacen)
     })
     
     toggleOpcionTipo()

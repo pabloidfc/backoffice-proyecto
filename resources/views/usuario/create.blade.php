@@ -138,12 +138,35 @@
         <div class="form-group row">
             <div class="col-auto">
                 <label for="departamento" class="form-label">Departamento*</label>
-                <input 
+                <select 
                 id="departamento"
                 class="form-control"
                 name="departamento" 
-                type="text" 
-                >
+                > 
+                    <option value="Artigas">Artigas</option>
+                    <option value="Salto">Salto</option>
+                    <option value="Rivera">Rivera</option>
+                    <option value="Paysandú">Paysandú</option>
+                    <option value="Tacuarembó">Tacuarembó</option>
+                    <option value="Cerro Largo">Cerro Largo</option>
+                    <option value="Río Negro">Río Negro</option>
+                    <option value="Durazno">Durazno</option>
+                    <option value="Treinta y Tres">Treinta y Tres</option>
+                    <option value="Soriano">Soriano</option>
+                    <option value="Flores">Flores</option>
+                    <option value="Florida">Florida</option>
+                    <option value="Lavalleja">Lavalleja</option>
+                    <option value="Rocha">Rocha</option>
+                    <option value="Colonia">Colonia</option>
+                    <option value="San José">San José</option>
+                    <option value="Canelones">Canelones</option>
+                    <option value="Maldonado">Maldonado</option>
+                    <option value="Monteviedo" selected>Monteviedo</option>
+
+                </select>
+
+
+
                 @error("departamento")
                     <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
@@ -202,9 +225,9 @@
         </div>
 
 
-        <fieldset>
-            <legend>Selecciona un tipo*</legend>
-            <div>
+        <div class="mt-2">
+            <span class="fs-4">Selecciona un tipo*</span>
+            <div class="mb-2">
                 <label>
                     <input 
                         type="radio"
@@ -239,7 +262,6 @@
                     <small style="color: red">{{ $message }}</small>   
                 @enderror
             </div>
-            <br>
             <div id="radio-tipo-contenedor" class="d-none">
                 <label>
                     <input 
@@ -258,9 +280,9 @@
                     De terceros
                 </label>
             </div>
-        </fieldset>
+        </div>
 
-        <div id="almacen-empresa-contenedor" class="d-none">
+        <div id="almacen-empresa-contenedor" class="d-none mb-4">
             <label>
                 Almacen de trabajo* <br>
                 <input name="almacen_id" type="number" id="input-almacen">

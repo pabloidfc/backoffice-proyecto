@@ -5,10 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
+use App\Models\Almacen;
 
 class UsuarioController extends Controller
 {
+    const DEPARTAMENTOS_URUGUAY = [
+        "Artigas",
+        "Canelones",
+        "Cerro Largo",
+        "Colonia",
+        "Durazno",
+        "Flores",
+        "Florida",
+        "Lavalleja",
+        "Maldonado",
+        "Montevideo",
+        "Paysandú",
+        "Río Negro",
+        "Rivera",
+        "Rocha",
+        "Salto",
+        "San José",
+        "Soriano",
+        "Tacuarembó",
+        "Treinta y Tres"
+    ];
+
     public function index() {
         $usuarios = User::paginate(12);
 
@@ -24,40 +46,45 @@ class UsuarioController extends Controller
     }
 
     public function create() {
-        return view("usuario.create");
+        $almacenesPropias = Almacen::where("tipo", "Propio")->get();
+        $almacenesDeterceros = Almacen::where("tipo", "De terceros")->get();
+        
+        return view("usuario.create", [
+            "almacenesPropias" => $almacenesPropias,
+            "almacenesDeterceros" => $almacenesDeterceros,
+        ]);
     }
 
     public function store(Request $req) {
         $req -> validate([
-            "ci"        => "required|digits:8|unique:users",
-            "nombre"    => "required|alpha|max:40",
-            "nombre2"   => "nullable|alpha|max:40",
-            "apellido"  => "required|alpha|max:40",
-            "apellido2" => "required|alpha|max:40",
-            "email"     => "required|email|unique:users",
-            "password"  => "required|confirmed",
-            "permisos"  => "required|in:Funcionario,Transportista",
-            "telefono"  => "required|digits:9",
-            "departamento" => "required|string|min:2",
-            "calle" => "required|string|min:2",
-            "esquina" => "nullable|string|min:2",
+            "ci"            => "required|digits:8|unique:users",
+            "nombre"        => "required|string|max:40",
+            "nombre2"       => "nullable|string|max:40",
+            "apellido"      => "required|string|max:40",
+            "apellido2"     => "required|string|max:40",
+            "email"         => "required|email|unique:users",
+            "password"      => "required|confirmed",
+            "permisos"      => "required|in:Funcionario,Transportista",
+            "telefono"      => "required|min:4|max:9",
+            "departamento"  => "required|in:" . implode(',', self::DEPARTAMENTOS_URUGUAY),
+            "calle"         => "required|string|min:2",
+            "esquina"       => "nullable|string|min:2",
             "nro_de_puerta" => "required|integer",
-            "coordenada" => "nullable|string|min:2"
+            "coordenada"    => "nullable|string|min:2"
         ]);
 
-        if($req->permisos == "Funcionario") {
-            $req -> validate([
+        $permisos = $req->input("permisos");
+
+        if($permisos == "Funcionario") {
+            $req->validate([
                 "tipo" => "required|in:Propio,De terceros",
-                "almacen_id" => ["required", "integer", Rule::exists('almacen', 'id')]
-            ], [
-                'almacen_id.exists' => 'The provided id does not match any Almacen',
+                "almacen_id" => "required|integer|exists:almacen,id"
             ]);
         }
+
         if ($req->tipo == "De terceros") {
-            $req -> validate([
-                "empresa_id" => ["required", "integer", Rule::exists('cliente', 'id')]
-            ], [
-                'empresa_id.exists' => 'The provided id does not match any Cliente',
+            $req->validate([
+                "empresa_id" => "required|integer|exists:cliente,id"
             ]);
         }
 
@@ -66,13 +93,13 @@ class UsuarioController extends Controller
         $this->crearTelefono($req, $usuario);
         $this->crearUbicacion($req, $usuario);
 
-        if($req->permisos == "Transportista") {
-            $this -> crearTransportista($req, $usuario);
+        if($permisos == "Transportista") {
+            $this->crearTransportista($req, $usuario);
         } else {
-            $this -> crearFuncionario($req, $usuario);
+            $this->crearFuncionario($req, $usuario);
         }
 
-        return redirect() -> route("usuario.index");
+        return redirect()->route("usuario.index");
     }
 
     private function crearUsuario($req, $usuario) {
