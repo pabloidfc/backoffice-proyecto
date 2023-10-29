@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section('title', "Usuarios")
+@section("title", "Usuarios")
     
 @section("content")
 <div class="container">
@@ -129,7 +129,7 @@
                 name="password_confirmation" 
                 type="password" 
                 >
-                @error('password_confirmation')
+                @error("password_confirmation")
                     <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
             </div>
@@ -140,8 +140,8 @@
                 <label for="departamento" class="form-label">Departamento*</label>
                 <select 
                 id="departamento"
-                class="form-control"
-                name="departamento" 
+                class="form-select"
+                name="departamento"
                 > 
                     <option value="Artigas">Artigas</option>
                     <option value="Salto">Salto</option>
@@ -161,7 +161,7 @@
                     <option value="San José">San José</option>
                     <option value="Canelones">Canelones</option>
                     <option value="Maldonado">Maldonado</option>
-                    <option value="Monteviedo" selected>Monteviedo</option>
+                    <option value="Montevideo" selected>Montevideo</option>
 
                 </select>
 
@@ -230,11 +230,11 @@
             <div class="mb-2">
                 <label>
                     <input 
+                        id="input-funcionario"
                         type="radio"
                         name="permisos" 
-                        id="input-funcionario"
                         value="Funcionario" 
-                    >
+                        >
                     Funcionario
                 </label>
                 <label>
@@ -253,11 +253,11 @@
                     <br>
                     <small style="color: red">{{ $message }}</small>   
                 @enderror
-                @error('almacen_id')
+                @error("almacen_id")
                     <br>
                     <small style="color: red">{{ $message }}</small>   
                 @enderror
-                @error('empresa_id')
+                @error("empresa_id")
                     <br>
                     <small style="color: red">{{ $message }}</small>   
                 @enderror
@@ -283,14 +283,14 @@
         </div>
 
         <div id="almacen-empresa-contenedor" class="d-none mb-4">
-            <label>
+            <label class="form-label">
                 Almacen de trabajo* <br>
-                <input name="almacen_id" type="number" id="input-almacen">
+                <input name="almacen_id" type="number" id="input-almacen" class="form-control">
             </label>
         
-            <label id="empresa-perteneciente" class="d-none">
+            <label id="empresa-perteneciente" class="d-none" class="form-label">
                 Empresa a la que pertenece* <br>
-                <input name="empresa_id" type="number" id="input-empresa">
+                <input name="empresa_id" type="number" id="input-empresa" class="form-control">
             </label>
         </div>
 

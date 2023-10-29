@@ -82,7 +82,7 @@ class UsuarioController extends Controller
             ]);
         }
 
-        if ($req->tipo == "De terceros") {
+        if ($req->input("tipo") == "De terceros") {
             $req->validate([
                 "empresa_id" => "required|integer|exists:cliente,id"
             ]);
