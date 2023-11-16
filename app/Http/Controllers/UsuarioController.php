@@ -48,6 +48,14 @@ class UsuarioController extends Controller
     public function create() {
         $almacenesPropias = Almacen::where("tipo", "Propio")->get();
         $almacenesDeterceros = Almacen::where("tipo", "De terceros")->get();
+
+        foreach($almacenesPropias as $almacen) {
+            $almacen->Ubicacion;
+        }
+
+        foreach($almacenesDeterceros as $almacen) {
+            $almacen->Ubicacion;
+        }
         
         return view("usuario.create", [
             "almacenesPropias" => $almacenesPropias,

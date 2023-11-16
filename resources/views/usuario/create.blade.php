@@ -162,15 +162,12 @@
                     <option value="Canelones">Canelones</option>
                     <option value="Maldonado">Maldonado</option>
                     <option value="Montevideo" selected>Montevideo</option>
-
                 </select>
-
-
-
                 @error("departamento")
                     <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
             </div>
+
             <div class="col-auto">
                 <label for="calle" class="form-label">Calle*</label>
                 <input 
@@ -224,77 +221,44 @@
             </div>
         </div>
 
-
-        <div class="mt-2">
-            <span class="fs-4">Selecciona un tipo*</span>
-            <div class="mb-2">
-                <label>
-                    <input 
-                        id="input-funcionario"
-                        type="radio"
-                        name="permisos" 
-                        value="Funcionario" 
-                        >
-                    Funcionario
-                </label>
-                <label>
-                    <input 
-                        type="radio"
-                        name="permisos" 
-                        value="Transportista" 
-                    >
-                    Transportista
-                </label>
+        
+        <div class="form-group mb-4">
+            <p class="fs-4">Selecciona un tipo de Usuario*</p>
+            <div class="col-auto">
+                <input type="radio" name="permisos" id="permisoFuncionario" value="Funcionario">
+                <label for="permisoFuncionario" class="form-label">Funcionario</label>
+                <input type="radio" name="permisos" id="permisoTransportista" value="Transportista">
+                <label for="permisoTransportista" class="form-label">Transportista</label>
                 @error("permisos")
                     <br>
-                    <small style="color: red">{{ $message }}</small>   
+                    <small class="form-text text-danger">{{ $message }}</small>
                 @enderror
-                @error("tipo")
-                    <br>
-                    <small style="color: red">{{ $message }}</small>   
-                @enderror
-                @error("almacen_id")
-                    <br>
-                    <small style="color: red">{{ $message }}</small>   
-                @enderror
-                @error("empresa_id")
-                    <br>
-                    <small style="color: red">{{ $message }}</small>   
-                @enderror
-            </div>
-            <div id="radio-tipo-contenedor" class="d-none">
-                <label>
-                    <input 
-                        type="radio"
-                        name="tipo" 
-                        value="Propio" 
-                    >
-                    Propio
-                </label>
-                <label>
-                    <input 
-                        type="radio"
-                        name="tipo" 
-                        value="De terceros" 
-                    >
-                    De terceros
-                </label>
+
+                <div id="tipoContenedor" class="d-none">
+                    <input type="radio" name="tipo" id="tipoPropio" value="Propio">
+                    <label for="tipoPropio" class="form-label">Propio</label>
+                    <input type="radio" name="tipo" id="tipoDeterceros" value="De terceros">
+                    <label for="tipoDeterceros" class="form-label">De terceros</label>
+                </div>
+
+                <div id="almacenesPropiasContenedor" class="col-lg-4 d-none">
+                    @if ($almacenesPropias)
+                    <select name="almacen_id" id="almacenesPropiasSelect" class="form-select">
+                        <option value="" selected disabled>Selecciona un almacen</option>
+                        @foreach ($almacenesPropias as $almacen)
+                                <option value="{{ $almacen->id }}">{{ $almacen->nombre }} - {{ $almacen->Ubicacion->departamento }}</option>
+                        @endforeach
+                    </select>
+                    @else
+                        <select name="almacen_id" id="almacenesPropiasSelect" class="form-select">
+                            <option value="" selected disabled>No existen almacenes</option>
+                        </select>
+                    @endif
+                </div>
             </div>
         </div>
 
-        <div id="almacen-empresa-contenedor" class="d-none mb-4">
-            <label class="form-label">
-                Almacen de trabajo* <br>
-                <input name="almacen_id" type="number" id="input-almacen" class="form-control">
-            </label>
-        
-            <label id="empresa-perteneciente" class="d-none" class="form-label">
-                Empresa a la que pertenece* <br>
-                <input name="empresa_id" type="number" id="input-empresa" class="form-control">
-            </label>
-        </div>
-
-        <div class="col-auto">
+        <div class="col-auto mb-5">
             <button class="btn btn-primary" type="submit">Enviar</button>
         </div>
     </form>
