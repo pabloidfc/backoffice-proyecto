@@ -1,38 +1,30 @@
+const ocultarAlmacenesPropias = ()=> {
+    almacenesPropiasContenedor.classList.add("d-none")
+    almacenesPropiasSelect.selectedIndex = 0
+}
+
+const mostrarAlmacenesPropias = ()=> {
+    almacenesPropiasContenedor.classList.remove("d-none")
+}
+
+const ocultarInputsTipoUsuario = ()=> {
+    const inputSelected = document.querySelector("input[name='tipo']:checked")
+    if (inputSelected) inputSelected.checked = false
+    
+    tipoContenedor.classList.add("d-none")
+}
+
+const mostrarInputsTipoUsuario = ()=> {
+    tipoContenedor.classList.remove("d-none")
+}
+
 addEventListener("DOMContentLoaded", ()=> {
-    const inputsRadioPermisos = document.querySelectorAll("[name='permisos']")
-    const inputsRadioTipo = document.querySelectorAll("[name='tipo']")
-    const radioTipoContenedor = document.querySelector("#radio-tipo-contenedor")
-    const almacenEmpresaInputContenedor = document.querySelector("#almacen-empresa-contenedor")
-    const inputEmpresa = document.querySelector("#empresa-perteneciente")
+    const permisosFuncionario = document.querySelector("#permisoFuncionario")
+    const permisosTransportista = document.querySelector("#permisoTransportista")
+    const tipoContenedor = document.querySelector("#tipoContenedor")
+    const almacenesPropiasSelect = document.querySelector("#almacenesPropiasSelect")
+    const almacenesPropiasContenedor = document.querySelector("#almacenesPropiasContenedor")
 
-    const toggleOpcionTipo = () => {
-        const [inputFuncionario] = inputsRadioPermisos
-        if (!inputFuncionario.checked) {
-            radioTipoContenedor.classList.add("d-none")
-            almacenEmpresaInputContenedor.classList.add("d-none")
-        } else {
-            radioTipoContenedor.classList.remove("d-none")
-            almacenEmpresaInputContenedor.classList.remove("d-none")
-        }
-    }
-
-    const toggleInputAlmacen = () => {
-        const [, inputDeTerceros] = inputsRadioTipo
-
-        if (!inputDeTerceros.checked) {
-            inputEmpresa.classList.add("d-none")
-        } else {
-            inputEmpresa.classList.remove("d-none")
-        }
-    }
-    
-    inputsRadioPermisos.forEach(input => {
-        input.addEventListener("change", toggleOpcionTipo)
-    })
-    inputsRadioTipo.forEach(input => {
-        input.addEventListener("click", toggleInputAlmacen);
-    })
-    
-    toggleOpcionTipo()
-    toggleInputAlmacen()
+    permisosFuncionario.addEventListener("click", mostrarInputsTipoUsuario)
+    permisosTransportista.addEventListener("click", ocultarInputsTipoUsuario)
 })
